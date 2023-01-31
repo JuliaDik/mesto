@@ -1,0 +1,27 @@
+.header {
+  width: calc(100% - 200px * 2);
+  max-width: 880px;
+  height: 74px;
+  margin: auto;
+  padding: 45px 0 0;
+
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+}
+
+/* 1280px */
+@media (max-width: 1280px) {
+  .header {
+    width: calc(100% - calc((100vw - 568px) / (1280 - 568) * (200 - 0) + 0px) * 2);
+    height: calc((100vw - 568px) / (1280 - 568) * (74 - 56) + 56px);
+    padding-top: calc((100vw - 568px) / (1280 - 568) * (45 - 28) + 28px);
+  }
+}
+
+/* 568px */
+@media (max-width: 568px) {
+  .header {
+    width: 100%;
+    height: 56px;
+    padding: 28px 0 0 0;
+  }
+}

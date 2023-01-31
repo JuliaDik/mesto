@@ -1,0 +1,15 @@
+.card__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 15px 25px 21px;
+
+  background-color: rgba(255, 255, 255, 1);
+}
+
+/* 320px */
+@media (max-width: 320px) {
+  .card__info {
+    padding: 25px 20px 25px 21px;
+  }
+}
