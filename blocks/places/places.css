@@ -1,20 +1,5 @@
 .places {
-  width: calc(100% - 200px * 2);
   max-width: 880px;
-  margin: auto;
-}
-
-/* 1280px */
-@media (max-width: 1280px) {
-  .places {
-    width: calc(100% - calc((100vw - 320px) / (1280 - 320) * (200 - 19) + 19px) * 2
-);
-  }
-}
-
-/* 320px */
-@media (max-width: 320px) {
-  .places {
-    width: calc(100% - 19px * 2);
-  }
+  margin: 0 auto;
+  padding: 0 19px;
 }

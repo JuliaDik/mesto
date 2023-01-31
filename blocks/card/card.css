@@ -1,9 +1,7 @@
 .card {
-  display: flex;
-  flex-direction: column;
   height: 361px;
-
   border-radius: 10px;
-
   overflow: hidden;
+
+  font-size: 0px;
 }

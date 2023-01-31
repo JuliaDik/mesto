@@ -14,7 +14,7 @@
     grid-template-areas:
       ". name edit-button"
       ". occupation .";
-    gap: 8px 10px;
+    gap: 6px 18px;
     justify-items: center;
   }
 }

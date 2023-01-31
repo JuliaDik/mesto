@@ -1,4 +1,4 @@
-.form__heading {
+.popup__title {
   margin: 0;
   margin-bottom: 45px;
 
@@ -9,7 +9,7 @@
 
 /* 568px */
 @media (max-width: 568px) {
-  .form__heading {
+  .popup__title {
     margin-bottom: 75px;
 
     font-size: 18px;

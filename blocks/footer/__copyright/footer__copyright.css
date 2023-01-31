@@ -5,6 +5,7 @@
   font-size: 18px;
   line-height: 1.2;
   color: rgba(84, 84, 84, 1);
+  letter-spacing: 1px;
 }
 
 /* 1280px */
@@ -14,9 +15,18 @@
   }
 }
 
+/* 1024px */
+@media (max-width: 1024px) {
+  .footer__copyright {
+    padding-left: calc((100vw - 320px) / (1024 - 320) * (50 - 19) + 19px);
+  }
+}
+
 /* 320px */
 @media (max-width: 320px) {
   .footer__copyright {
+    padding-left: 19px;
+
     font-size: 14px;
   }
 }

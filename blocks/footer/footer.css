@@ -1,14 +1,12 @@
 .footer {
-  width: calc(100% - 200px * 2);
   max-width: 880px;
-  margin: auto;
+  margin: 0 auto;
   padding: 67px 0 60px;
 }
 
 /* 1280px */
-@media (max-width: 1280px) {
+@media (max-width: 320px) {
   .footer {
-    width: calc(100% - calc((100vw - 320px) / (1280 - 320) * (200 - 19) + 19px) * 2);
     padding: calc((100vw - 320px) / (1280 - 320) * (67 - 48) + 48px) 0 calc((100vw - 320px) / (1280 - 320) * (60 - 36) + 36px);
   }
 }
@@ -16,7 +14,6 @@
 /* 320px */
 @media (max-width: 320px) {
   .footer {
-    width: calc(100% - 19px * 2);
     padding: 48px 0 36px;
   }
 }

@@ -16,9 +16,9 @@ function popupClosed() {
 closeButton.addEventListener('click', popupClosed);
 
 // Редактирование профиля (имени и информации о себе)
-let formElement = document.querySelector('.popup__form');
-let nameInput = document.querySelector('.form__text_type_name');
-let jobInput = document.querySelector('.form__text_type_occupation');
+let formElement = document.querySelector('.popup__edit-form');
+let nameInput = document.querySelector('.popup__input_type_name');
+let jobInput = document.querySelector('.popup__input_type_occupation');
 
 function handleFormSubmit (evt) {
     evt.preventDefault();
@@ -28,9 +28,7 @@ function handleFormSubmit (evt) {
     jobProfile.textContent = jobInput.value;
 }
 
-let saveButton = document.querySelector('.form__save-button');
+let saveButton = document.querySelector('.popup__save-button');
 saveButton.addEventListener('click', popupClosed);
 
 formElement.addEventListener('submit', handleFormSubmit);
-
-
