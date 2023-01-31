@@ -23,4 +23,4 @@ Mesto - сервис для публикации фотографий.
 [Макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 
 ## Ссылка на проект
-[Проект на GitHub Pages]()
+[Проект на GitHub Pages](https://juliadik.github.io/mesto/index.html)
