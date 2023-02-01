@@ -12,6 +12,8 @@
 @media (max-width: 1024px) {
   .profile__edit-button {
     grid-area: edit-button;
+    justify-self: start;
+    align-self: baseline;
   }
 }
 

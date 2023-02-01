@@ -16,7 +16,7 @@
     grid-template-columns: minmax(282px, auto);
     row-gap: 29px;
     justify-items: center;
-    padding: 42px 19px 39px;
-    box-sizing: border-box;
+    padding-top: 42px;
+    padding-bottom: 39px;
   }
 }

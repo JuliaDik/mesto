@@ -9,11 +9,11 @@
 /* 1024px */
 @media (max-width: 1024px) {
   .profile__info {
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: 1fr minmax(67%, 2fr) 1fr;
     grid-template-areas:
       ". name edit-button"
       ". occupation .";
-    gap: 6px 18px;
+    gap: 6px 0;
     justify-items: center;
   }
 }

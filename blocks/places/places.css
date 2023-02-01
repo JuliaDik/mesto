@@ -6,8 +6,7 @@
 /* 912px */
 @media (max-width: 912px) {
   .places {
-    padding-right: 19px;
-    padding-left: 19px;
-    box-sizing: border-box;
+    margin-right: 19px;
+    margin-left: 19px;
   }
 }
