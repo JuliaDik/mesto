@@ -4,7 +4,7 @@
   -moz-column-gap: 30px;
   column-gap: 30px;
   align-items: center;
-  width: 100%;
+  max-width: 880px;
   margin: 0 auto;
   padding: 40px 0 50px;
 }
@@ -15,6 +15,7 @@
     grid-template-columns: 1fr;
     row-gap: 29px;
     justify-items: center;
-    padding: 42px 0 39px;
+    padding: 42px 19px 39px;
+    box-sizing: border-box;
   }
 }

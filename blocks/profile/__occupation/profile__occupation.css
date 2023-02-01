@@ -1,5 +1,6 @@
 .profile__occupation {
   margin: 0;
+  width: 100%;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.2;
@@ -12,7 +13,7 @@
 /* 1280px */
 @media (max-width: 1280px) {
   .profile__occupation {
-    font-size: calc((100vw - 450px) / (1280 - 450) * (18 - 14) + 14px);
+    font-size: calc((100vw - 550px) / (1280 - 550) * (18 - 14) + 14px);
   }
 }
 
@@ -20,21 +21,12 @@
 @media (max-width: 1024px) {
   .profile__occupation {
     grid-area: occupation;
-    width: 100%;
-    max-width: 400px;
     text-align: center;
   }
 }
 
-/* 667px */
-@media (max-width: 667px) {
-  .profile__occupation {
-    max-width: 282px;
-  }
-}
-
-/* 450px */
-@media (max-width: 450px) {
+/* 550px */
+@media (max-width: 550px) {
   .profile__occupation {
     font-size: 14px;
   }
