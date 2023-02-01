@@ -1,11 +1,12 @@
 .footer {
+  max-width: 880px;
   width: 100%;
   margin: 0 auto;
   padding: 67px 0 60px;
 }
 
 /* 1280px */
-@media (max-width: 320px) {
+@media (max-width: 1280px) {
   .footer {
     padding: calc((100vw - 320px) / (1280 - 320) * (67 - 48) + 48px) 0 calc((100vw - 320px) / (1280 - 320) * (60 - 36) + 36px);
   }
