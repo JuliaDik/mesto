@@ -7,6 +7,7 @@
   .header__logo {
     width: calc((100vw - 320px) / (1024 - 320) * (142 - 103.74) + 103.74px);
     padding-left: calc((100vw - 320px) / (1024 - 320) * (50 - 27) + 27px);
+    box-sizing: border-box;
   }
 }
 

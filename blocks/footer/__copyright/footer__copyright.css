@@ -18,6 +18,7 @@
 @media (max-width: 1024px) {
   .footer__copyright {
     padding-left: calc((100vw - 320px) / (1024 - 320) * (50 - 19) + 19px);
+    box-sizing: border-box;
   }
 }
 
