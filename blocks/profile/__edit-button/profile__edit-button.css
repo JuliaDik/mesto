@@ -15,8 +15,8 @@
   }
 }
 
-/* 480px */
-@media (max-width: 480px) {
+/* 425px */
+@media (max-width: 425px) {
   .profile__edit-button {
     width: 18px;
     height: 18px;

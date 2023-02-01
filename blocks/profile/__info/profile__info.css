@@ -9,7 +9,7 @@
 /* 1024px */
 @media (max-width: 1024px) {
   .profile__info {
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: repeat(3, auto);
     grid-template-areas:
       ". name edit-button"
       ". occupation .";

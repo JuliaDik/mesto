@@ -6,13 +6,14 @@
   align-items: center;
   max-width: 880px;
   margin: 0 auto;
-  padding: 40px 0 50px;
+  padding-top: 40px;
+  padding-bottom: 50px;
 }
 
 /* 1024px */
 @media (max-width: 1024px) {
   .profile {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(282px, auto);
     row-gap: 29px;
     justify-items: center;
     padding: 42px 19px 39px;

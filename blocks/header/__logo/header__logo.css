@@ -5,13 +5,14 @@
 /* 1024px */
 @media (max-width: 1024px) {
   .header__logo {
-    width: calc((100vw - 320px) / (1024 - 320) * (142 - 103.74) + 103.74px);
+    width: calc((100vw - 425px) / (1024 - 425) * (142 - 104) + 104px);
+    margin-left: 27px;
   }
 }
 
-/* 320px */
-@media (max-width: 320px) {
+/* 425px */
+@media (max-width: 425px) {
   .header__logo {
-    width: 103.74px;
+    width: 104px;
   }
 }
