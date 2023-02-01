@@ -14,18 +14,9 @@
   }
 }
 
-/* 1024px */
-@media (max-width: 1024px) {
-  .footer__copyright {
-    padding-left: calc((100vw - 320px) / (1024 - 320) * (50 - 19) + 19px);
-    box-sizing: border-box;
-  }
-}
-
 /* 320px */
 @media (max-width: 320px) {
   .footer__copyright {
-    padding-left: 19px;
     font-size: 14px;
   }
 }

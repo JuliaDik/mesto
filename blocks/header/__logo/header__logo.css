@@ -6,8 +6,6 @@
 @media (max-width: 1024px) {
   .header__logo {
     width: calc((100vw - 320px) / (1024 - 320) * (142 - 103.74) + 103.74px);
-    padding-left: calc((100vw - 320px) / (1024 - 320) * (50 - 27) + 27px);
-    box-sizing: border-box;
   }
 }
 
@@ -15,6 +13,5 @@
 @media (max-width: 320px) {
   .header__logo {
     width: 103.74px;
-    padding-left: 27px;
   }
 }
