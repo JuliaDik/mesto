@@ -9,3 +9,10 @@
 
   list-style: none;
 }
+
+/* 912px */
+@media (max-width: 912px) {
+  .cards {
+    padding: 0 19px;
+  }
+}

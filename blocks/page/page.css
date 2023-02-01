@@ -1,6 +1,5 @@
 .page {
-  min-width: fit-content;
-  max-width: 1280px;
+  max-width: 880px;
   margin: 0 auto;
 
   font-family: "Inter", "Arial", sans-serif;
