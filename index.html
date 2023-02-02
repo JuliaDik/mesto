@@ -31,10 +31,10 @@
           alt="Аватар пользователя">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button" type="button"></button>
+          <button class="profile__edit-button" type="button" aria-label="кнопка-редактировать"></button>
           <p class="profile__occupation">Исследователь океана</p>
         </div>
-        <button class="profile__add-button" type="button"></button>
+        <button class="profile__add-button" type="button" aria-label="кнопка-добавить"></button>
       </section>
 
       <!-- Places -->
@@ -44,60 +44,60 @@
             <img
               class="card__image"
               src="images/curonian-spit.jpg"
-              alt="Фото">
+              alt="Куршская коса">
             <div class="card__info">
               <h2 class="card__title">Куршская коса</h2>
-              <button class="card__like-button card__like-button_active" ></button>
+              <button class="card__like-button" type="button" aria-label="кнопка-нравится"></button>
             </div>
           </li>
           <li class="card">
             <img
               class="card__image"
               src="images/karachay-cherkessia.jpg"
-              alt="Фото">
+              alt="Карачаево-Черкесская республика">
             <div class="card__info">
               <h2 class="card__title">Карачаево-Черкесская республика</h2>
-              <button class="card__like-button card__like-button_active"></button>
+              <button class="card__like-button" type="button" aria-label="кнопка-нравится"></button>
             </div>
           </li>
           <li class="card">
             <img
               class="card__image"
               src="images/katun-altai.jpg"
-              alt="Фото">
+              alt="Алтайский край">
             <div class="card__info">
               <h2 class="card__title">Алтайский край</h2>
-              <button class="card__like-button card__like-button_active"></button>
+              <button class="card__like-button" type="button" aria-label="кнопка-нравится"></button>
             </div>
           </li>
           <li class="card">
             <img
               class="card__image"
               src="images/moscow.jpg"
-              alt="Фото">
+              alt="Москва">
             <div class="card__info">
               <h2 class="card__title">Москва</h2>
-              <button class="card__like-button card__like-button_active"></button>
+              <button class="card__like-button" type="button" aria-label="кнопка-нравится"></button>
             </div>
           </li>
           <li class="card">
             <img
               class="card__image"
               src="images/pyatigorsk.jpg"
-              alt="Фото">
+              alt="Пятигорск">
             <div class="card__info">
               <h2 class="card__title">Пятигорск</h2>
-              <button class="card__like-button card__like-button_active"></button>
+              <button class="card__like-button" type="button" aria-label="кнопка-нравится"></button>
             </div>
           </li>
           <li class="card">
             <img
               class="card__image"
               src="images/saint-petersburg.jpg"
-              alt="Фото">
+              alt="Санкт-Петербург">
             <div class="card__info">
               <h2 class="card__title">Санкт-Петербург</h2>
-              <button class="card__like-button card__like-button_active"></button>
+              <button class="card__like-button" type="button" aria-label="кнопка-нравится"></button>
             </div>
           </li>
         </ul>
@@ -112,22 +112,22 @@
     <!-- Popup -->
     <div class="popup">
       <div class="popup__container">
-        <button class="popup__close-button" type="button"></button>
-        <form class="popup__edit-form">
+        <button class="popup__close-button" type="button" aria-label="кнопка-закрыть"></button>
+        <form class="popup__edit-form" name="edit-form">
           <h3 class="popup__title">Редактировать профиль</h3>
           <input
             class="popup__input popup__input_type_name"
             type="text"
             name="name"
-            value="Жак-Ив Кусто"
+            value=""
             placeholder="Имя">
           <input
             class="popup__input popup__input_type_occupation"
             type="text"
             name="occupation"
-            value="Исследователь океана"
+            value=""
             placeholder="О себе">
-          <button class="popup__save-button" type="submit">Сохранить</button>
+          <button class="popup__save-button" type="submit" aria-label="кнопка-сохранить">Сохранить</button>
         </form>
       </div>
     </div>
