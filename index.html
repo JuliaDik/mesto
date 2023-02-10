@@ -24,7 +24,7 @@
     <!-- Main -->
     <main class="content">
       <!-- Profile -->
-      <section class="profile" aria-label="Профиль пользователя">
+      <section class="profile" aria-label="профиль пользователя">
         <img
           class="profile__image"
           src="images/avatar.jpg"
@@ -38,75 +38,16 @@
       </section>
 
       <!-- Places -->
-      <section class="places" aria-label="картинки пользователя">
+      <section class="places" aria-label="карточки с фотографиями">
         <ul class="cards">
-          <li class="card">
-            <img
-              class="card__image"
-              src="images/curonian-spit.jpg"
-              alt="Куршская коса">
-            <div class="card__info">
-              <h2 class="card__title">Куршская коса</h2>
-              <button class="card__like-button" type="button" aria-label="кнопка-нравится"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img
-              class="card__image"
-              src="images/karachay-cherkessia.jpg"
-              alt="Карачаево-Черкесская республика">
-            <div class="card__info">
-              <h2 class="card__title">Карачаево-Черкесская республика</h2>
-              <button class="card__like-button" type="button" aria-label="кнопка-нравится"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img
-              class="card__image"
-              src="images/katun-altai.jpg"
-              alt="Алтайский край">
-            <div class="card__info">
-              <h2 class="card__title">Алтайский край</h2>
-              <button class="card__like-button" type="button" aria-label="кнопка-нравится"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img
-              class="card__image"
-              src="images/moscow.jpg"
-              alt="Москва">
-            <div class="card__info">
-              <h2 class="card__title">Москва</h2>
-              <button class="card__like-button" type="button" aria-label="кнопка-нравится"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img
-              class="card__image"
-              src="images/pyatigorsk.jpg"
-              alt="Пятигорск">
-            <div class="card__info">
-              <h2 class="card__title">Пятигорск</h2>
-              <button class="card__like-button" type="button" aria-label="кнопка-нравится"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img
-              class="card__image"
-              src="images/saint-petersburg.jpg"
-              alt="Санкт-Петербург">
-            <div class="card__info">
-              <h2 class="card__title">Санкт-Петербург</h2>
-              <button class="card__like-button" type="button" aria-label="кнопка-нравится"></button>
-            </div>
-          </li>
+
         </ul>
       </section>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
-      <p class="footer__copyright">© 2020 Mesto Russia</p>
+      <p class="footer__copyright">© 2023 Mesto Russia</p>
     </footer>
 
     <!-- Popup -->
@@ -131,6 +72,20 @@
         </form>
       </div>
     </div>
+
+    <!-- Template -->
+    <template class="card-template">
+      <li class="card">
+        <img
+          class="card__image"
+          src=""
+          alt="">
+        <div class="card__info">
+          <h2 class="card__title"></h2>
+          <button class="card__like-button" type="button" aria-label="кнопка-нравится"></button>
+        </div>
+      </li>
+    </template>
     <script src="scripts/index.js"></script>
   </body>
 </html>

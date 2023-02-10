@@ -1,11 +1,40 @@
-let nameProfile = document.querySelector('.profile__name');
-let occupationProfile = document.querySelector('.profile__occupation');
-let editionButton = document.querySelector('.profile__edit-button');
-let popup = document.querySelector('.popup');
-let formElement = document.querySelector('.popup__edit-form');
-let nameInput = document.querySelector('.popup__input_type_name');
-let occupationInput = document.querySelector('.popup__input_type_occupation');
-let closureButton = document.querySelector('.popup__close-button');
+const nameProfile = document.querySelector('.profile__name');
+const occupationProfile = document.querySelector('.profile__occupation');
+const editionButton = document.querySelector('.profile__edit-button');
+const popup = document.querySelector('.popup');
+const formElement = document.querySelector('.popup__edit-form');
+const nameInput = document.querySelector('.popup__input_type_name');
+const occupationInput = document.querySelector('.popup__input_type_occupation');
+const closureButton = document.querySelector('.popup__close-button');
+const cards = document.querySelector('.cards');
+const cardTemplate = document.querySelector('.card-template').content;
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 
 // Открытие попапа
 function openPopup() {
@@ -30,3 +59,13 @@ function handleFormSubmit (evt) {
 editionButton.addEventListener('click', openPopup);
 closureButton.addEventListener('click', closePopup);
 formElement.addEventListener('submit', handleFormSubmit);
+
+// Добавление карточек из массива initialCards
+initialCards.forEach(function (element) {
+  const cardElement = cardTemplate.cloneNode(true);
+
+  cardElement.querySelector('.card__title').textContent = element.name;
+  cardElement.querySelector('.card__image').src = element.link;
+
+  cards.append(cardElement);
+});
