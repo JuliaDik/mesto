@@ -5,3 +5,10 @@
   object-fit: cover;
   border-radius: 50%;
 }
+
+/* 768px */
+@media (max-width: 768px) {
+  .profile__image {
+    margin-bottom: 26px;
+  }
+}

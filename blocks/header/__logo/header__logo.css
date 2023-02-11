@@ -6,7 +6,6 @@
 @media (max-width: 1024px) {
   .header__logo {
     width: calc((100vw - 425px) / (1024 - 425) * (142 - 104) + 104px);
-    margin-left: 27px;
   }
 }
 

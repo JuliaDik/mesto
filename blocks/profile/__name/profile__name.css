@@ -1,8 +1,7 @@
 .profile__name {
   margin: 0;
-  max-width: 100%;
   font-weight: 500;
-  font-size: 42px;
+  font-size: calc((100vw - 425px) / (1280 - 425) * (42 - 23) + 23px);
   line-height: 1.14;
   letter-spacing: 2px;
   text-overflow: ellipsis;
@@ -10,15 +9,8 @@
   overflow: hidden;
 }
 
-/* 1280px */
-@media (max-width: 1280px) {
-  .profile__name {
-    font-size: calc((100vw - 425px) / (1280 - 425) * (42 - 23) + 23px);
-  }
-}
-
-/* 1024px */
-@media (max-width: 1024px) {
+/* 768px */
+@media (max-width: 768px) {
   .profile__name {
     grid-area: name;
     text-align: center;

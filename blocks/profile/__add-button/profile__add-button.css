@@ -8,11 +8,10 @@
   cursor: pointer;
 }
 
-/* 1024px */
-@media (max-width: 1024px) {
+/* 768px */
+@media (max-width: 768px) {
   .profile__add-button {
-    max-width: 282px;
-    width: 100%;
+    width: 282px;
     background: transparent url(../../../images/add-button-large.svg) no-repeat center / contain;
   }
 }

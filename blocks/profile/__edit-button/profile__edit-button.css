@@ -8,12 +8,13 @@
   cursor: pointer;
 }
 
-/* 1024px */
-@media (max-width: 1024px) {
+/* 768px */
+@media (max-width: 768px) {
   .profile__edit-button {
     grid-area: edit-button;
     justify-self: start;
     align-self: baseline;
+    margin-left: 10px;
   }
 }
 
