@@ -11,7 +11,8 @@
 /* 768px */
 @media (max-width: 768px) {
   .profile__add-button {
-    width: 282px;
+    max-width: 282px;
+    width: 100%;
     background: transparent url(../../../images/add-button-large.svg) no-repeat center / contain;
   }
 }
