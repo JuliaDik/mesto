@@ -5,10 +5,16 @@
   column-gap: 30px;
   align-items: center;
   max-width: 880px;
-  width: 100%;
   margin: 0 auto;
-  padding: 42px 19px 39px;
+  padding: 42px 0 39px;
   box-sizing: border-box;
+}
+
+/* 900px */
+@media (max-width: 900px) {
+  .profile {
+    padding: 42px 19px 39px;
+  }
 }
 
 /* 768px */
