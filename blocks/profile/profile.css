@@ -11,14 +11,6 @@
   box-sizing: border-box;
 }
 
-/* 900px */
-@media (max-width: 900px) {
-  .profile {
-    width: calc(100% - 19px * 2);
-  }
-}
-
-
 /* 768px */
 @media (max-width: 768px) {
   .profile {

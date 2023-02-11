@@ -3,10 +3,3 @@
   width: 100%;
   margin: 0 auto;
 }
-
-/* 900px */
-@media (max-width: 900px) {
-  .gallery {
-    width: calc(100% - 19px * 2);
-  }
-}
