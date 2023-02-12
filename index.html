@@ -51,7 +51,8 @@
     </footer>
 
     <!-- popup -->
-    <div class="popup">
+    <!-- редактировать профиль -->
+    <div class="popup popup_type_edit">
       <div class="popup__container">
         <button class="popup__close-button" type="button" aria-label="кнопка-закрыть"></button>
         <form class="popup__edit-form" name="edit-form">
@@ -68,7 +69,29 @@
             name="occupation"
             value=""
             placeholder="О себе">
-          <button class="popup__save-button" type="submit" aria-label="кнопка-сохранить">Сохранить</button>
+          <button class="popup__save-button popup__save-Button" type="submit" aria-label="кнопка-сохранить">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <!-- добавить новую карточку -->
+    <div class="popup popup_type_add">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button" aria-label="кнопка-закрыть"></button>
+        <form class="popup__edit-form" name="edit-form">
+          <h3 class="popup__title">Новое место</h3>
+          <input
+            class="popup__input popup__input_type_title"
+            type="text"
+            name="title"
+            value=""
+            placeholder="Название">
+          <input
+            class="popup__input popup__input_type_link"
+            type="text"
+            name="link"
+            value=""
+            placeholder="Ссылка на картинку">
+          <button class="popup__save-button" type="submit" aria-label="кнопка-сохранить">Создать</button>
         </form>
       </div>
     </div>
