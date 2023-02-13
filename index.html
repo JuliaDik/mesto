@@ -40,7 +40,6 @@
       <!-- gallery -->
       <section class="gallery" aria-label="карточки с фотографиями">
         <ul class="cards">
-
         </ul>
       </section>
     </main>
@@ -50,59 +49,67 @@
       <p class="footer__copyright">© 2023 Mesto Russia</p>
     </footer>
 
-    <!-- popup -->
-    <!-- редактировать профиль -->
+    <!-- popup: редактировать профиль -->
     <div class="popup popup_type_edit">
       <div class="popup__container">
         <button class="popup__close-button" type="button" aria-label="кнопка-закрыть"></button>
-        <form class="popup__edit-form" name="edit-form">
-          <h3 class="popup__title">Редактировать профиль</h3>
+        <form class="popup__form form form_type_edit" name="edit-form">
+          <h3 class="form__title">Редактировать профиль</h3>
           <input
-            class="popup__input popup__input_type_name"
+            class="form__input form__input_type_name"
             type="text"
             name="name"
             value=""
             placeholder="Имя">
           <input
-            class="popup__input popup__input_type_occupation"
+            class="form__input form__input_type_occupation"
             type="text"
             name="occupation"
             value=""
             placeholder="О себе">
-          <button class="popup__save-button popup__save-Button" type="submit" aria-label="кнопка-сохранить">Сохранить</button>
+          <button class="form__submit-button" type="submit" aria-label="кнопка-сохранить">Сохранить</button>
         </form>
       </div>
     </div>
-    <!-- добавить новую карточку -->
+    <!-- popup: добавить карточку -->
     <div class="popup popup_type_add">
       <div class="popup__container">
         <button class="popup__close-button" type="button" aria-label="кнопка-закрыть"></button>
-        <form class="popup__edit-form" name="edit-form">
-          <h3 class="popup__title">Новое место</h3>
+        <form class="popup__form form form_type_add" name="add-form">
+          <h3 class="form__title">Новое место</h3>
           <input
-            class="popup__input popup__input_type_title"
+            class="form__input form__input_type_title"
             type="text"
             name="title"
             value=""
             placeholder="Название">
           <input
-            class="popup__input popup__input_type_link"
+            class="form__input form__input_type_link"
             type="text"
             name="link"
             value=""
             placeholder="Ссылка на картинку">
-          <button class="popup__save-button" type="submit" aria-label="кнопка-сохранить">Создать</button>
+          <button class="form__submit-button" type="submit" aria-label="кнопка-сохранить">Создать</button>
         </form>
       </div>
     </div>
+    <!-- popup: открыть картинку в большом размере -->
+    <div class="popup popup_type_image">
+      <div class="popup__image-container">
+          <button class="popup__close-button" type="button" aria-label="кнопка-закрыть"></button>
+          <img class="popup__image" src="#" alt="#">
+          <p class="popup__image-caption"></p>
+      </div>
+  </div>
 
-    <!-- template -->
+    <!-- template: шаблон карточки -->
     <template class="card-template">
       <li class="card">
+        <button class="card__delete-button" type="button" aria-label="кнопка-удалить"></button>
         <img
           class="card__image"
-          src=""
-          alt="">
+          src="#"
+          alt="#">
         <div class="card__info">
           <h2 class="card__title"></h2>
           <button class="card__like-button" type="button" aria-label="кнопка-нравится"></button>

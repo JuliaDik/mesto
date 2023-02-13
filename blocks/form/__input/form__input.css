@@ -1,4 +1,4 @@
-.popup__input {
+.form__input {
   width: 100%;
   margin-bottom: 30px;
   padding-top: 6px;
@@ -11,18 +11,18 @@
   box-sizing: border-box;
 }
 
-.popup__input:last-of-type {
+.form__input:last-of-type {
   margin-bottom: 51px;
 }
 
 /* 568px */
 @media (max-width: 568px) {
-  .popup__input:last-of-type {
+  .form__input:last-of-type {
     margin-bottom: 44px;
   }
 }
 
-.popup__input::-webkit-input-placeholder {
+.form__input::-webkit-input-placeholder {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
@@ -30,7 +30,7 @@
   vertical-align: text-top;
 }
 
-.popup__input::-moz-placeholder {
+.form__input::-moz-placeholder {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
@@ -38,7 +38,7 @@
   vertical-align: text-top;
 }
 
-.popup__input:-ms-input-placeholder {
+.form__input:-ms-input-placeholder {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
@@ -46,7 +46,7 @@
   vertical-align: text-top;
 }
 
-.popup__input::-ms-input-placeholder {
+.form__input::-ms-input-placeholder {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
@@ -54,7 +54,7 @@
   vertical-align: text-top;
 }
 
-.popup__input::placeholder {
+.form__input::placeholder {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
