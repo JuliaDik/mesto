@@ -1,6 +1,6 @@
 .card {
   position: relative;
-  font-size: 0px;
+  font-size: 0;
   border-radius: 10px;
   overflow: hidden;
 }
