@@ -4,7 +4,7 @@
   padding: 0;
   background: transparent url(../../../images/like-button-disabled.svg) no-repeat center / contain;
   border: none;
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s;
   cursor: pointer;
 }
 
