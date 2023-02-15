@@ -83,7 +83,7 @@ function createNewCard(name, link) {
   });
   // открыть (увеличить) картинку
   const popupCardImage = document.querySelector('.popup__image');
-  const popupCardCaption = document.querySelector('.popup__image-caption');
+  const popupCardCaption = document.querySelector('.popup__caption');
   function zoomImage() {
     openPopup(popupCard);
     popupCardImage.src = cardImage.src;
@@ -116,13 +116,15 @@ function handleFormAddSubmit(evt) {
 };
 
 // СЛУШАТЕЛИ
-// открыть форму
+// открыть форму редактирования профиля
 buttonEdit.addEventListener('click', () => openPopup(popupEdit));
+// открыть форму добавления карточки
 buttonAdd.addEventListener('click', () => openPopup(popupAdd));
-// сохранить данные формы
+// сохранить данные формы редактирования профиля
 formEdit.addEventListener('submit', handleFormEditSubmit);
+// сохранить данные формы добавления карточки
 formAdd.addEventListener('submit', handleFormAddSubmit);
-// закрыть форму
+// закрыть попап
 buttonsClose.forEach(button => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));

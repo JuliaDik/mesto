@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mesto - сервис для публикации фотографий">
-    <meta name="keywords" content="mesto, russia, блог, публикация фотографий, путешествие, россия, природа, города, достопримечательности">
+    <meta
+      name="description"
+      content="Mesto - сервис для публикации фотографий">
+    <meta
+      name="keywords"
+      content="mesto, russia, блог, публикация фотографий, путешествие, россия, природа, города, достопримечательности">
     <meta name="author" content="Юлия Диколенко">
     <title>Mesto Russia</title>
     <link rel="icon" href="images/favicon.png">
     <link rel="stylesheet" href="pages/index.css">
   </head>
-
   <body class="page">
     <!-- header -->
     <header class="header">
@@ -20,7 +23,6 @@
         src="images/logo.svg"
         alt="Логотип">
     </header>
-
     <!-- main -->
     <main class="content">
       <!-- profile -->
@@ -31,28 +33,36 @@
           alt="Аватар пользователя">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button" type="button" aria-label="кнопка-редактировать"></button>
+          <button
+            class="profile__edit-button"
+            type="button"
+            aria-label="кнопка-редактировать">
+          </button>
           <p class="profile__occupation">Исследователь океана</p>
         </div>
-        <button class="profile__add-button" type="button" aria-label="кнопка-добавить"></button>
+        <button
+          class="profile__add-button"
+          type="button"
+          aria-label="кнопка-добавить">
+        </button>
       </section>
-
       <!-- gallery -->
       <section class="gallery" aria-label="карточки с фотографиями">
-        <ul class="cards">
-        </ul>
+        <ul class="cards"></ul>
       </section>
     </main>
-
     <!-- footer -->
     <footer class="footer">
       <p class="footer__copyright">© 2023 Mesto Russia</p>
     </footer>
-
     <!-- popup: редактировать профиль -->
     <div class="popup popup_type_edit">
       <div class="popup__container">
-        <button class="popup__close-button" type="button" aria-label="кнопка-закрыть"></button>
+        <button
+          class="popup__close-button"
+          type="button"
+          aria-label="кнопка-закрыть">
+        </button>
         <form class="popup__form form form_type_edit" name="edit-form">
           <h3 class="form__title">Редактировать профиль</h3>
           <input
@@ -67,14 +77,23 @@
             name="occupation"
             value=""
             placeholder="О себе">
-          <button class="form__submit-button" type="submit" aria-label="кнопка-сохранить">Сохранить</button>
+          <button
+            class="form__submit-button"
+            type="submit"
+            aria-label="кнопка-сохранить">
+            Сохранить
+          </button>
         </form>
       </div>
     </div>
     <!-- popup: добавить карточку -->
     <div class="popup popup_type_add">
       <div class="popup__container">
-        <button class="popup__close-button" type="button" aria-label="кнопка-закрыть"></button>
+        <button
+          class="popup__close-button"
+          type="button"
+          aria-label="кнопка-закрыть">
+        </button>
         <form class="popup__form form form_type_add" name="add-form">
           <h3 class="form__title">Новое место</h3>
           <input
@@ -89,30 +108,43 @@
             name="link"
             value=""
             placeholder="Ссылка на картинку">
-          <button class="form__submit-button" type="submit" aria-label="кнопка-сохранить">Создать</button>
+          <button
+            class="form__submit-button"
+            type="submit"
+            aria-label="кнопка-сохранить">
+            Создать
+          </button>
         </form>
       </div>
     </div>
-    <!-- popup: открыть картинку в большом размере -->
+    <!-- popup: открыть (увеличить) картинку -->
     <div class="popup popup_type_image">
       <figure class="popup__image-container">
-        <button class="popup__close-button" type="button" aria-label="кнопка-закрыть"></button>
+        <button
+          class="popup__close-button"
+          type="button"
+          aria-label="кнопка-закрыть">
+        </button>
         <img class="popup__image" src="" alt="">
-        <figcaption class="popup__image-caption"></figcaption>
+        <figcaption class="popup__caption"></figcaption>
       </figure>
-  </div>
-
+    </div>
     <!-- template: шаблон карточки -->
     <template class="card-template">
       <li class="card">
-        <button class="card__delete-button" type="button" aria-label="кнопка-удалить"></button>
-        <img
-          class="card__image"
-          src=""
-          alt="">
+        <button
+          class="card__delete-button"
+          type="button"
+          aria-label="кнопка-удалить">
+        </button>
+        <img class="card__image" src="" alt="">
         <div class="card__info">
           <h2 class="card__title"></h2>
-          <button class="card__like-button" type="button" aria-label="кнопка-нравится"></button>
+          <button
+            class="card__like-button"
+            type="button"
+            aria-label="кнопка-нравится">
+          </button>
         </div>
       </li>
     </template>
