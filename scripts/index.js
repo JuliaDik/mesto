@@ -84,19 +84,19 @@ function createNewCard(name, link) {
   // открыть (увеличить) картинку
   const popupCardImage = document.querySelector('.popup__image');
   const popupCardCaption = document.querySelector('.popup__image-caption');
-  const zoomImage = (name, link) => {
+  function zoomImage() {
     openPopup(popupCard);
-    popupCardImage.src = link;
-    popupCardImage.alt = name;
-    popupCardCaption.textContent = name;
-  };
+    popupCardImage.src = cardImage.src;
+    popupCardImage.alt = cardTitle.alt;
+    popupCardCaption.textContent = cardTitle.textContent;
+  }
   cardImage.addEventListener('click', zoomImage);
   return newCard;
 };
 // добавить карточку в верстку
-const renderCard = (name, link) => {
+function renderCard(name, link) {
   cards.append(createNewCard(name, link));
-};
+}
 // добавить карточки в верстку из массива (по умолчанию)
 initialCards.forEach((card) => {
   renderCard(card.name, card.link);
