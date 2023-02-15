@@ -2,6 +2,7 @@
 
 ## Описание.
 Mesto - сервис для публикации фотографий.
+
 Пользователь имеет возможность:
 - редактировать профиль;
 - добавлять и удалять карточки;
@@ -25,7 +26,8 @@ Mesto - сервис для публикации фотографий.
 - Кроссбраузерность.
 
 ## Ссылка на макеты в Figma
-[Проектная работа №4](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1);
+[Проектная работа №4](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+
 [Проектная работа №5](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1&t=Efe7tBhpCUOOGqIU-0)
 
 ## Ссылка на проект
