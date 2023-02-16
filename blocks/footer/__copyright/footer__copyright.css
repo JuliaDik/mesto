@@ -4,7 +4,6 @@
   font-size: calc((100vw - 425px) / (1280 - 425) * (18 - 14) + 14px);
   line-height: 1.2;
   color: rgba(84, 84, 84, 1);
-  letter-spacing: 1px;
 }
 
 /* 425px */

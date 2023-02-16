@@ -3,7 +3,6 @@
   font-weight: 400;
   font-size: calc((100vw - 425px) / (1280 - 425) * (18 - 14) + 14px);
   line-height: 1.2;
-  letter-spacing: 0.5px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
