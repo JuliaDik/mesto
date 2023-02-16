@@ -36,14 +36,16 @@
           <button
             class="profile__edit-button"
             type="button"
-            aria-label="кнопка-редактировать">
+            aria-label="кнопка-редактировать"
+            title = "Редактировать">
           </button>
           <p class="profile__occupation">Исследователь океана</p>
         </div>
         <button
           class="profile__add-button"
           type="button"
-          aria-label="кнопка-добавить">
+          aria-label="кнопка-добавить"
+          title = "Добавить карточку">
         </button>
       </section>
       <!-- gallery -->
@@ -63,7 +65,7 @@
           type="button"
           aria-label="кнопка-закрыть">
         </button>
-        <form class="popup__form form form_type_edit" name="edit-form">
+        <form class="popup__form form" name="profile-form">
           <h3 class="form__title">Редактировать профиль</h3>
           <input
             class="form__input form__input_type_name"
@@ -92,7 +94,7 @@
           type="button"
           aria-label="кнопка-закрыть">
         </button>
-        <form class="popup__form form form_type_add" name="add-form">
+        <form class="popup__form form" name="card-form">
           <h3 class="form__title">Новое место</h3>
           <input
             class="form__input form__input_type_title"
@@ -101,7 +103,7 @@
             placeholder="Название">
           <input
             class="form__input form__input_type_link"
-            type="text"
+            type="url"
             name="link"
             placeholder="Ссылка на картинку">
           <button
