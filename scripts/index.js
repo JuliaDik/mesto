@@ -68,7 +68,7 @@ function createNewCard(name, link) {
   const cardTitle = newCard.querySelector('.card__title');
   cardImage.src = link;
   cardTitle.textContent = name;
-  cardTitle.alt = name;
+  cardImage.alt = name;
   // поставить лайк
   const buttonLike = newCard.querySelector('.card__like-button');
   buttonLike.addEventListener('click', evt => {
