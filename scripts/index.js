@@ -30,7 +30,7 @@ const initialCards = [
 // кнопки
 const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonAdd = document.querySelector('.profile__add-button');
-const closeButtons = document.querySelectorAll('.popup__close-button');
+const closeButtons = document.querySelectorAll('.popup__close');
 // попапы
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
@@ -45,12 +45,12 @@ const cards = document.querySelector('.cards');
 const cardTemplate = document.querySelector('.card-template');
 // форма редактирования профиля
 const profileForm = document.forms['profile-form'];
-const inputName = document.querySelector('.form__input_type_name');
-const inputOccupation = document.querySelector('.form__input_type_occupation');
+const inputName = document.querySelector('.popup__input_type_name');
+const inputOccupation = document.querySelector('.popup__input_type_occupation');
 // форма добавления карточки
 const cardForm = document.forms['card-form'];
-const inputTitle = document.querySelector('.form__input_type_title');
-const inputLink = document.querySelector('.form__input_type_link');
+const inputTitle = document.querySelector('.popup__input_type_title');
+const inputLink = document.querySelector('.popup__input_type_link');
 
 // ФУНКЦИИ
 //открыть попап
@@ -89,11 +89,11 @@ function createNewCard(name, link) {
   cardImage.addEventListener('click', zoomImage);
   return newCard;
 };
-// добавить карточку в верстку
+// добавить (визуализировать) карточку
 function renderCard(name, link) {
   cards.append(createNewCard(name, link));
 };
-// добавить карточки в верстку из массива (по умолчанию)
+// добавить карточки из массива (по умолчанию)
 initialCards.forEach((card) => {
   renderCard(card.name, card.link);
 });

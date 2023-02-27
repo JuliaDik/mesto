@@ -1,4 +1,4 @@
-.form__input {
+.popup__input {
   width: 100%;
   margin: 0 0 5px;
   padding: 0 0 10px;
@@ -10,22 +10,22 @@
   box-sizing: border-box;
 }
 
-.form__input::-webkit-input-placeholder {
+.popup__input::-webkit-input-placeholder {
   color: rgba(196, 196, 196, 1);
 }
 
-.form__input::-moz-placeholder {
+.popup__input::-moz-placeholder {
   color: rgba(196, 196, 196, 1);
 }
 
-.form__input:-ms-input-placeholder {
+.popup__input:-ms-input-placeholder {
   color: rgba(196, 196, 196, 1);
 }
 
-.form__input::-ms-input-placeholder {
+.popup__input::-ms-input-placeholder {
   color: rgba(196, 196, 196, 1);
 }
 
-.form__input::placeholder {
+.popup__input::placeholder {
   color: rgba(196, 196, 196, 1);
 }

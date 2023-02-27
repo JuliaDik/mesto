@@ -61,14 +61,14 @@
     <div class="popup popup_type_edit">
       <div class="popup__container">
         <button
-          class="popup__close-button"
+          class="popup__close"
           type="button"
           aria-label="кнопка-закрыть">
         </button>
-        <form class="popup__form form" name="profile-form" novalidate>
-          <h3 class="form__title">Редактировать профиль</h3>
+        <form class="popup__form" name="profile-form" novalidate>
+          <h3 class="popup__title">Редактировать профиль</h3>
           <input
-            class="form__input form__input_type_name"
+            class="popup__input popup__input_type_name"
             type="text"
             id="name-input"
             name="name"
@@ -76,9 +76,9 @@
             minlength="2"
             maxlength="40"
             required>
-          <span class="form__input-error name-input-error">Вы пропустили это поле</span>
+          <span class="popup__error name-input-error"></span>
           <input
-            class="form__input form__input_type_occupation"
+            class="popup__input popup__input_type_occupation"
             type="text"
             id="occupation-input"
             name="occupation"
@@ -86,9 +86,9 @@
             minlength="2"
             maxlength="200"
             required>
-          <span class="form__input-error occupation-input-error">Вы пропустили это поле</span>
+          <span class="popup__error occupation-input-error"></span>
           <button
-            class="form__submit-button"
+            class="popup__button"
             type="submit"
             aria-label="кнопка-сохранить">
             Сохранить
@@ -100,28 +100,32 @@
     <div class="popup popup_type_add">
       <div class="popup__container">
         <button
-          class="popup__close-button"
+          class="popup__close"
           type="button"
           aria-label="кнопка-закрыть">
         </button>
-        <form class="popup__form form" name="card-form">
-          <h3 class="form__title">Новое место</h3>
+        <form class="popup__form" name="card-form" novalidate>
+          <h3 class="popup__title">Новое место</h3>
           <input
-            class="form__input form__input_type_title"
+            class="popup__input popup__input_type_title"
             type="text"
             id="title-input"
             name="title"
-            placeholder="Название">
-          <span class="form__input-error title-input-error">Вы пропустили это поле</span>
+            placeholder="Название"
+            minlength="2"
+            maxlength="30"
+            required>
+          <span class="popup__error title-input-error"></span>
           <input
-            class="form__input form__input_type_link"
+            class="popup__input popup__input_type_link"
             type="url"
             id="link-input"
             name="link"
-            placeholder="Ссылка на картинку">
-          <span class="form__input-error link-input-error">Вы пропустили это поле</span>
+            placeholder="Ссылка на картинку"
+            required>
+          <span class="popup__error link-input-error"></span>
           <button
-            class="form__submit-button"
+            class="popup__button"
             type="submit"
             aria-label="кнопка-сохранить">
             Создать
@@ -133,7 +137,7 @@
     <div class="popup popup_type_image">
       <figure class="popup__image-container">
         <button
-          class="popup__close-button"
+          class="popup__close"
           type="button"
           aria-label="кнопка-закрыть">
         </button>
@@ -161,5 +165,6 @@
       </li>
     </template>
     <script src="scripts/index.js"></script>
+    <script src="scripts/validate.js"></script>
   </body>
 </html>
