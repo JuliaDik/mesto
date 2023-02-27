@@ -65,18 +65,28 @@
           type="button"
           aria-label="кнопка-закрыть">
         </button>
-        <form class="popup__form form" name="profile-form">
+        <form class="popup__form form" name="profile-form" novalidate>
           <h3 class="form__title">Редактировать профиль</h3>
           <input
             class="form__input form__input_type_name"
             type="text"
+            id="name-input"
             name="name"
-            placeholder="Имя">
+            placeholder="Имя"
+            minlength="2"
+            maxlength="40"
+            required>
+          <span class="form__input-error name-input-error">Вы пропустили это поле</span>
           <input
             class="form__input form__input_type_occupation"
             type="text"
+            id="occupation-input"
             name="occupation"
-            placeholder="О себе">
+            placeholder="О себе"
+            minlength="2"
+            maxlength="200"
+            required>
+          <span class="form__input-error occupation-input-error">Вы пропустили это поле</span>
           <button
             class="form__submit-button"
             type="submit"
@@ -99,13 +109,17 @@
           <input
             class="form__input form__input_type_title"
             type="text"
+            id="title-input"
             name="title"
             placeholder="Название">
+          <span class="form__input-error title-input-error">Вы пропустили это поле</span>
           <input
             class="form__input form__input_type_link"
             type="url"
+            id="link-input"
             name="link"
             placeholder="Ссылка на картинку">
+          <span class="form__input-error link-input-error">Вы пропустили это поле</span>
           <button
             class="form__submit-button"
             type="submit"

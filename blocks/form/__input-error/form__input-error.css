@@ -1,0 +1,19 @@
+.form__input-error {
+  min-height: 24px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.2;
+  color: rgba(255, 0, 0, 1);
+  visibility: hidden;
+}
+
+.form__input-error:last-of-type {
+  margin: 0 0 19px;
+}
+
+/* 568px */
+@media (max-width: 568px) {
+  .form__input-error:last-of-type {
+    margin-bottom: 16px;
+  }
+}
