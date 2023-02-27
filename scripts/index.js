@@ -32,6 +32,7 @@ const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonAdd = document.querySelector('.profile__add-button');
 const closeButtons = document.querySelectorAll('.popup__close');
 // попапы
+const popups = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupCard = document.querySelector('.popup_type_image');
@@ -125,8 +126,11 @@ buttonAdd.addEventListener('click', () => openPopup(popupAdd));
 profileForm.addEventListener('submit', handleFormEditSubmit);
 // сохранить данные формы добавления карточки
 cardForm.addEventListener('submit', handleFormAddSubmit);
-// закрыть попап
-closeButtons.forEach(button => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
+// закрыть попап кликом на оверлей или крестик
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
+      closePopup(popup);
+    }
+  });
 });
