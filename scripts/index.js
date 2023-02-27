@@ -126,10 +126,15 @@ buttonAdd.addEventListener('click', () => openPopup(popupAdd));
 profileForm.addEventListener('submit', handleFormEditSubmit);
 // сохранить данные формы добавления карточки
 cardForm.addEventListener('submit', handleFormAddSubmit);
-// закрыть попап кликом на оверлей или крестик
+// закрыть попап кликом на оверлей, крестик + нажатием Escape
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
+      closePopup(popup);
+    }
+  });
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
       closePopup(popup);
     }
   });
