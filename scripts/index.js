@@ -1,4 +1,3 @@
-// МАССИВ
 const initialCards = [
   {
     name: 'Архыз',
@@ -25,12 +24,10 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
-// ПЕРЕМЕННЫЕ
 // кнопки
 const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonAdd = document.querySelector('.profile__add-button');
-const closeButtons = document.querySelectorAll('.popup__close');
+const closeButtons = document.querySelectorAll('.popup__close-button');
 // попапы
 const popups = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_type_edit');
@@ -52,8 +49,6 @@ const inputOccupation = document.querySelector('.popup__input_type_occupation');
 const cardForm = document.forms['card-form'];
 const inputTitle = document.querySelector('.popup__input_type_title');
 const inputLink = document.querySelector('.popup__input_type_link');
-
-// ФУНКЦИИ
 //открыть попап
 const openPopup = popup => {
   popup.classList.add('popup_opened');
@@ -103,42 +98,40 @@ const createNewCard = (name, link) => {
 const renderCard = (name, link) => {
   cards.append(createNewCard(name, link));
 };
-// добавить карточки из массива (по умолчанию)
+// добавить (визуализировать) карточки из массива
 initialCards.forEach(card => {
   renderCard(card.name, card.link);
 });
-// сохранить данные формы редактирования профиля
+// обработчик формы "Редактировать профиль"
 const handleFormEditSubmit = evt => {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileOccupation.textContent = inputOccupation.value;
   closePopup(popupEdit);
 };
-// сохранить данные формы добавления карточки
+// обработчик формы "Новое место"
 const handleFormAddSubmit = evt => {
   evt.preventDefault();
   cards.prepend(createNewCard(inputTitle.value, inputLink.value));
   evt.target.reset();
   closePopup(popupAdd);
 };
-
-// СЛУШАТЕЛИ
-// открыть форму редактирования профиля
+// открыть форму "Редактировать профиль"
 buttonEdit.addEventListener('click', () => {
   openPopup(popupEdit);
   inputName.value = profileName.textContent;
   inputOccupation.value = profileOccupation.textContent;
 });
-// открыть форму добавления карточки
-buttonAdd.addEventListener('click', () => openPopup(popupAdd));
-// сохранить данные формы редактирования профиля
+// сохранить форму "Редактировать профиль"
 profileForm.addEventListener('submit', handleFormEditSubmit);
-// сохранить данные формы добавления карточки
+// открыть форму "Новое место"
+buttonAdd.addEventListener('click', () => openPopup(popupAdd));
+// сохранить форму "Новое место"
 cardForm.addEventListener('submit', handleFormAddSubmit);
-// закрыть попап кликом на оверлей, крестик
+// закрыть попап кликом на оверлей или крестик
 popups.forEach(popup => {
   popup.addEventListener('mousedown', evt => {
-    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
+    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')) {
       closePopup(popup);
     }
   });

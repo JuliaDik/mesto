@@ -1,8 +1,8 @@
 const configValidation = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 };
@@ -40,11 +40,11 @@ const toggleButtonState = (inputList, buttonElement, configValidation) => {
   // если хотя бы одно из полей ввода пустое или невалидно, сделать кнопку неактивной
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(configValidation.inactiveButtonClass);
-    // кнопка неактивна
+    // неактивна
     buttonElement.setAttribute('disabled', true);
   } else {
     buttonElement.classList.remove(configValidation.inactiveButtonClass);
-    // кнопка активна
+    // активна
     buttonElement.removeAttribute('disabled');
   }
 };
