@@ -55,15 +55,24 @@ const inputLink = document.querySelector('.popup__input_type_link');
 
 // ФУНКЦИИ
 //открыть попап
-function openPopup(popup) {
+const openPopup = popup => {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', handleEsc);
 };
 // закрыть попап
-function closePopup(popup) {
+const closePopup = popup => {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleEsc);
+};
+// обработчик Escape
+const handleEsc = evt => {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
 };
 // создать карточку на основе шаблона
-function createNewCard(name, link) {
+const createNewCard = (name, link) => {
   const newCard = cardTemplate.content.cloneNode(true);
   const cardImage = newCard.querySelector('.card__image');
   const cardTitle = newCard.querySelector('.card__title');
@@ -81,7 +90,7 @@ function createNewCard(name, link) {
     evt.target.closest('.card').remove();
   });
   // открыть (увеличить) картинку
-  function zoomImage() {
+  const zoomImage = () =>{
     openPopup(popupCard);
     popupCardImage.src = cardImage.src;
     popupCardImage.alt = cardTitle.alt;
@@ -91,22 +100,22 @@ function createNewCard(name, link) {
   return newCard;
 };
 // добавить (визуализировать) карточку
-function renderCard(name, link) {
+const renderCard = (name, link) => {
   cards.append(createNewCard(name, link));
 };
 // добавить карточки из массива (по умолчанию)
-initialCards.forEach((card) => {
+initialCards.forEach(card => {
   renderCard(card.name, card.link);
 });
 // сохранить данные формы редактирования профиля
-function handleFormEditSubmit(evt) {
+const handleFormEditSubmit = evt => {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileOccupation.textContent = inputOccupation.value;
   closePopup(popupEdit);
 };
 // сохранить данные формы добавления карточки
-function handleFormAddSubmit(evt) {
+const handleFormAddSubmit = evt => {
   evt.preventDefault();
   cards.prepend(createNewCard(inputTitle.value, inputLink.value));
   evt.target.reset();
@@ -126,15 +135,10 @@ buttonAdd.addEventListener('click', () => openPopup(popupAdd));
 profileForm.addEventListener('submit', handleFormEditSubmit);
 // сохранить данные формы добавления карточки
 cardForm.addEventListener('submit', handleFormAddSubmit);
-// закрыть попап кликом на оверлей, крестик + нажатием Escape
-popups.forEach((popup) => {
-  popup.addEventListener('mousedown', (evt) => {
+// закрыть попап кликом на оверлей, крестик
+popups.forEach(popup => {
+  popup.addEventListener('mousedown', evt => {
     if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
-      closePopup(popup);
-    }
-  });
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
       closePopup(popup);
     }
   });

@@ -40,8 +40,12 @@ const toggleButtonState = (inputList, buttonElement, configValidation) => {
   // если хотя бы одно из полей ввода пустое или невалидно, сделать кнопку неактивной
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(configValidation.inactiveButtonClass);
+    // кнопка неактивна
+    buttonElement.setAttribute('disabled', true);
   } else {
     buttonElement.classList.remove(configValidation.inactiveButtonClass);
+    // кнопка активна
+    buttonElement.removeAttribute('disabled');
   }
 };
 // установить слушатели на все поля ввода (проверка на валидность и реагирование кнопки)

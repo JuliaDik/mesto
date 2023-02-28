@@ -20,7 +20,3 @@
     font-size: 14px;
   }
 }
-
-.popup__button:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
