@@ -1,12 +1,3 @@
-const configValidation = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit-button',
-  inactiveButtonClass: 'popup__submit-button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-};
-
 // показать ошибку
 const showInputError = (formElement, inputElement, errorMessage, configValidation) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -35,17 +26,24 @@ const hasInvalidInput = (inputList) => {
     return !inputElement.validity.valid;
   });
 };
+// заблокировать кнопку
+const disableButton = (buttonElement, configValidation) => {
+  buttonElement.classList.add(configValidation.inactiveButtonClass);
+  buttonElement.setAttribute('disabled', true);
+};
+// активировать кнопку
+const enableButton = (buttonElement, configValidation) => {
+  buttonElement.classList.remove(configValidation.inactiveButtonClass);
+  buttonElement.removeAttribute('disabled');
+};
 // переключить состояние кнопки
 const toggleButtonState = (inputList, buttonElement, configValidation) => {
-  // если хотя бы одно из полей ввода пустое или невалидно, сделать кнопку неактивной
+  // если хотя бы одно поле ввода пустое или невалидно, сделать кнопку неактивной
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(configValidation.inactiveButtonClass);
-    // неактивна
-    buttonElement.setAttribute('disabled', true);
+    disableButton(buttonElement, configValidation);
+  // иначе - активной
   } else {
-    buttonElement.classList.remove(configValidation.inactiveButtonClass);
-    // активна
-    buttonElement.removeAttribute('disabled');
+    enableButton(buttonElement, configValidation);
   }
 };
 // установить слушатели на все поля ввода (проверка на валидность и реагирование кнопки)

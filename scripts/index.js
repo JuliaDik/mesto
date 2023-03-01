@@ -1,29 +1,3 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 // кнопки
 const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonAdd = document.querySelector('.profile__add-button');
@@ -68,7 +42,7 @@ const handleEsc = evt => {
 };
 // создать карточку на основе шаблона
 const createNewCard = (name, link) => {
-  const newCard = cardTemplate.content.cloneNode(true);
+  const newCard = cardTemplate.content.querySelector('.card').cloneNode(true);
   const cardImage = newCard.querySelector('.card__image');
   const cardTitle = newCard.querySelector('.card__title');
   cardImage.src = link;
@@ -94,26 +68,22 @@ const createNewCard = (name, link) => {
   cardImage.addEventListener('click', zoomImage);
   return newCard;
 };
-// добавить (визуализировать) карточку
-const renderCard = (name, link) => {
-  cards.append(createNewCard(name, link));
-};
-// добавить (визуализировать) карточки из массива
+// добавить карточки из массива
 initialCards.forEach(card => {
-  renderCard(card.name, card.link);
+  cards.append(createNewCard(card.name, card.link));
 });
 // обработчик формы "Редактировать профиль"
-const handleFormEditSubmit = evt => {
-  evt.preventDefault();
+const handleFormEditSubmit = () => {
   profileName.textContent = inputName.value;
   profileOccupation.textContent = inputOccupation.value;
   closePopup(popupEdit);
 };
 // обработчик формы "Новое место"
 const handleFormAddSubmit = evt => {
-  evt.preventDefault();
   cards.prepend(createNewCard(inputTitle.value, inputLink.value));
   evt.target.reset();
+  const buttonSubmit = popupAdd.querySelector('.popup__submit-button');
+  disableButton(buttonSubmit, configValidation);
   closePopup(popupAdd);
 };
 // открыть форму "Редактировать профиль"
