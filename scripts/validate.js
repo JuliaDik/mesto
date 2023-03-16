@@ -1,75 +1,91 @@
-// показать ошибку
-const showInputError = (formElement, inputElement, errorMessage, configValidation) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add(configValidation.errorClass);
-  inputElement.classList.add(configValidation.inputErrorClass);
-};
-// скрыть ошибку
-const hideInputError = (formElement, inputElement, configValidation) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  errorElement.textContent = '';
-  errorElement.classList.remove(configValidation.errorClass);
-  inputElement.classList.remove(configValidation.inputErrorClass);
-};
-// проверить на валидность конкретное поле ввода
-const checkInputValidity = (formElement, inputElement, configValidation) => {
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage, configValidation);
-  } else {
-    hideInputError(formElement, inputElement, configValidation);
+class FormValidator {
+  constructor(configValidation, formElement) {
+    this._inputSelector = configValidation.inputSelector;
+    this._formSelector = configValidation.formSelector;
+    this._submitButtonSelector = configValidation.submitButtonSelector;
+    this._inactiveButtonClass = configValidation.inactiveButtonClass;
+    this._inputErrorClass = configValidation.inputErrorClass;
+    this._errorClass = configValidation.errorClass;
+    this._formElement = formElement;
   }
-};
-// проверить на валидность все поля ввода (необходимо для кнопки)
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
-// заблокировать кнопку
-const disableButton = (buttonElement, configValidation) => {
-  buttonElement.classList.add(configValidation.inactiveButtonClass);
-  buttonElement.setAttribute('disabled', true);
-};
-// активировать кнопку
-const enableButton = (buttonElement, configValidation) => {
-  buttonElement.classList.remove(configValidation.inactiveButtonClass);
-  buttonElement.removeAttribute('disabled');
-};
-// переключить состояние кнопки
-const toggleButtonState = (inputList, buttonElement, configValidation) => {
-  // если хотя бы одно поле ввода пустое или невалидно, сделать кнопку неактивной
-  if (hasInvalidInput(inputList)) {
-    disableButton(buttonElement, configValidation);
-  // иначе - активной
-  } else {
-    enableButton(buttonElement, configValidation);
+
+  // показать ошибку
+  _showInputError(inputElement, errorMessage) {
+    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add(this._errorClass);
+    inputElement.classList.add(this._inputErrorClass);
   }
-};
-// установить слушатели на все поля ввода (проверка на валидность и реагирование кнопки)
-const setEventListeners = (formElement, configValidation) => {
-  const inputList = Array.from(formElement.querySelectorAll(configValidation.inputSelector));
-  const buttonElement = formElement.querySelector(configValidation.submitButtonSelector);
-  // до ввода данных кнопка неактивна
-  toggleButtonState(inputList, buttonElement, configValidation);
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', function () {
-      checkInputValidity(formElement, inputElement, configValidation);
-      toggleButtonState(inputList, buttonElement, configValidation);
+
+  // скрыть ошибку
+  _hideInputError(inputElement) {
+    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+    errorElement.textContent = '';
+    errorElement.classList.remove(this._errorClass);
+    inputElement.classList.remove(this._inputErrorClass);
+  }
+
+  // проверить на валидность конкретное поле ввода
+  _checkInputValidity(inputElement) {
+    if (!inputElement.validity.valid) {
+      this._showInputError(inputElement, inputElement.validationMessage);
+    } else {
+      this._hideInputError(inputElement);
+    }
+  }
+
+  // проверить на валидность все поля ввода (необходимо для кнопки)
+  _hasInvalidInput() {
+    return this._inputList.some((inputElement) => {
+      return !inputElement.validity.valid;
     });
-  });
-};
-// активировать валидацию форм
-const enableValidation = (configValidation) => {
-  const formList = Array.from(document.querySelectorAll(configValidation.formSelector));
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
+  }
+
+  // заблокировать кнопку
+  _disableButton() {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.setAttribute('disabled', true);
+  }
+
+  // активировать кнопку
+  _enableButton() {
+    this._buttonElement.classList.remove(this._inactiveButtonClass);
+    this._buttonElement.removeAttribute('disabled');
+  }
+
+  // переключить состояние кнопки
+  _toggleButtonState() {
+    // если хотя бы одно поле ввода пустое или невалидно, сделать кнопку неактивной
+    if (this._hasInvalidInput()) {
+      this._disableButton();
+    // иначе - активной
+    } else {
+      this._enableButton();
+    }
+  }
+
+  // установить слушатели на все поля ввода (проверка на валидность и реагирование кнопки)
+  _setEventListeners() {
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+    // до ввода данных кнопка неактивна
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => {
+      inputElement.addEventListener('input', () => {
+        this._checkInputValidity(inputElement);
+        this._toggleButtonState();
+      });
     });
-    setEventListeners(formElement, configValidation);
-  });
-};
+  }
 
-enableValidation(configValidation);
-
-
+  // активировать валидацию форм
+  enableValidation() {
+    this._formList = Array.from(document.querySelectorAll(this._formSelector));
+    this._formList.forEach((item) => {
+      item.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+      });
+      this._setEventListeners();
+    });
+  }
+}
