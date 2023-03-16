@@ -37,7 +37,6 @@ export const configValidation = {
 // кнопки
 export const buttonEdit = document.querySelector('.profile__edit-button');
 export const buttonAdd = document.querySelector('.profile__add-button');
-export const closeButtons = document.querySelectorAll('.popup__close-button');
 
 // попапы
 export const popups = document.querySelectorAll('.popup');
@@ -53,7 +52,6 @@ export const profileOccupation = document.querySelector('.profile__occupation');
 
 // карточки
 export const cards = document.querySelector('.cards');
-export const cardTemplate = document.querySelector('.card-template');
 
 // форма редактирования профиля
 export const profileForm = document.forms['profile-form'];
