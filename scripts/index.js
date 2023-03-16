@@ -1,3 +1,4 @@
+// import {Card} from './card.js';
 // кнопки
 const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonAdd = document.querySelector('.profile__add-button');
@@ -40,38 +41,91 @@ const handleEsc = evt => {
     closePopup(openedPopup);
   }
 };
-// создать карточку на основе шаблона
-const createNewCard = (name, link) => {
-  const newCard = cardTemplate.content.querySelector('.card').cloneNode(true);
-  const cardImage = newCard.querySelector('.card__image');
-  const cardTitle = newCard.querySelector('.card__title');
-  cardImage.src = link;
-  cardTitle.textContent = name;
-  cardImage.alt = name;
-  // поставить лайк
-  const buttonLike = newCard.querySelector('.card__like-button');
-  buttonLike.addEventListener('click', evt => {
-    evt.target.classList.toggle('card__like-button_active');
-  });
-  // удалить карточку
-  const buttonDelete = newCard.querySelector('.card__delete-button');
-  buttonDelete.addEventListener('click', evt => {
-    evt.target.closest('.card').remove();
-  });
-  // открыть (увеличить) картинку
-  const zoomImage = () =>{
-    openPopup(popupCard);
-    popupCardImage.src = cardImage.src;
-    popupCardImage.alt = cardTitle.alt;
-    popupCardCaption.textContent = cardTitle.textContent;
+
+class Card {
+  constructor(data, templateSelector, handleCardClick) {
+    this._name = data.name;
+    this._link = data.link;
+    this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
-  cardImage.addEventListener('click', zoomImage);
-  return newCard;
-};
+
+  _getTemplate() {
+    const cardElement = document
+      .querySelector(this._templateSelector)
+      .content
+      .querySelector('.card')
+      .cloneNode(true);
+
+    return cardElement;
+  }
+
+  _handleLike() {
+    this._buttonLike.classList.toggle('card__like-button_active');
+  }
+
+  _handleDelete() {
+    this._buttonDelete.closest('.card').remove();
+  }
+
+  _setEventListeners() {
+    this._buttonLike.addEventListener('click', () => {
+      this._handleLike();
+    });
+
+    this._buttonDelete.addEventListener('click', () => {
+      this._handleDelete();
+    });
+
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick(this._name, this._link);
+    });
+  }
+
+  generateCard() {
+    this._element = this._getTemplate();
+
+    this._cardImage = this._element.querySelector('.card__image');
+    this._cardTitle = this._element.querySelector('.card__title');
+    this._buttonLike = this._element.querySelector('.card__like-button');
+    this._buttonDelete = this._element.querySelector('.card__delete-button');
+
+    this._setEventListeners();
+
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
+    this._cardTitle.textContent = this._name;
+
+    return this._element;
+  }
+}
+
+// обработчик клика по карточке
+const handleCardClick = (name, link) => {
+  popupCardImage.src = link;
+  popupCardImage.alt = name;
+  popupCardCaption.textContent = name;
+  openPopup(popupCard);
+}
+
+// создать карточку
+const generateCard = (data) => {
+  const card = new Card(data, '.card-template', handleCardClick);
+  const generatedCard = card.generateCard();
+  return generatedCard;
+}
+
+// добавить карточку
+const renderCard = (data) => {
+  const cardElement = generateCard(data);
+  cards.prepend(cardElement);
+}
+
 // добавить карточки из массива
 initialCards.forEach(card => {
-  cards.append(createNewCard(card.name, card.link));
+  renderCard(card);
 });
+
 // обработчик формы "Редактировать профиль"
 const handleFormEditSubmit = () => {
   profileName.textContent = inputName.value;
@@ -80,7 +134,11 @@ const handleFormEditSubmit = () => {
 };
 // обработчик формы "Новое место"
 const handleFormAddSubmit = evt => {
-  cards.prepend(createNewCard(inputTitle.value, inputLink.value));
+  const card = {
+    name: inputTitle.value,
+    link: inputLink.value
+  };
+  renderCard(card);
   evt.target.reset();
   const buttonSubmit = popupAdd.querySelector('.popup__submit-button');
   disableButton(buttonSubmit, configValidation);
