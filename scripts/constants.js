@@ -26,7 +26,6 @@ export const initialCards = [
 ];
 
 export const configValidation = {
-  formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit-button',
   inactiveButtonClass: 'popup__submit-button_disabled',
@@ -45,20 +44,21 @@ export const popupAdd = document.querySelector('.popup_type_add');
 export const popupCard = document.querySelector('.popup_type_image');
 export const popupCardImage = document.querySelector('.popup__image');
 export const popupCardCaption = document.querySelector('.popup__caption');
+export const openedPopup = document.querySelector('.popup_opened');
 
 // профиль
 export const profileName = document.querySelector('.profile__name');
 export const profileOccupation = document.querySelector('.profile__occupation');
 
-// карточки
-export const cards = document.querySelector('.cards');
+// контейнер для карточек
+export const cardsContainer = document.querySelector('.cards-container');
 
-// форма редактирования профиля
+// форма "Редактировать профиль"
 export const profileForm = document.forms['profile-form'];
 export const inputName = document.querySelector('.popup__input_type_name');
 export const inputOccupation = document.querySelector('.popup__input_type_occupation');
 
-// форма добавления карточки
+// форма "Новое место"
 export const cardForm = document.forms['card-form'];
 export const inputTitle = document.querySelector('.popup__input_type_title');
 export const inputLink = document.querySelector('.popup__input_type_link');

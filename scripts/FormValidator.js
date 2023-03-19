@@ -1,12 +1,14 @@
 export class FormValidator {
   constructor(configValidation, formElement) {
     this._inputSelector = configValidation.inputSelector;
-    this._formSelector = configValidation.formSelector;
     this._submitButtonSelector = configValidation.submitButtonSelector;
     this._inactiveButtonClass = configValidation.inactiveButtonClass;
     this._inputErrorClass = configValidation.inputErrorClass;
     this._errorClass = configValidation.errorClass;
     this._formElement = formElement;
+
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
   }
 
   // показать ошибку
@@ -34,7 +36,8 @@ export class FormValidator {
     }
   }
 
-  // проверить на валидность все поля ввода (необходимо для кнопки)
+  // найти среди всех полей ввода хотя бы одно невалидное поле
+  // для настройки статуса кнопки
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
@@ -53,7 +56,7 @@ export class FormValidator {
     this._buttonElement.removeAttribute('disabled');
   }
 
-  // переключить состояние кнопки
+  // изменить статус кнопки
   _toggleButtonState() {
     // если хотя бы одно поле ввода пустое или невалидно, сделать кнопку неактивной
     if (this._hasInvalidInput()) {
@@ -64,10 +67,9 @@ export class FormValidator {
     }
   }
 
-  // установить слушатели на все поля ввода (проверка на валидность и реагирование кнопки)
+  // установить слушатели на все поля ввода и кнопку submit формы,
+  // которую передаем через formElement
   _setEventListeners() {
-    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     // до ввода данных кнопка неактивна
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
@@ -76,16 +78,14 @@ export class FormValidator {
         this._toggleButtonState();
       });
     });
+
+    this._formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+    });
   }
 
-  // активировать валидацию форм
+  // валидация формы
   enableValidation() {
-    this._formList = Array.from(document.querySelectorAll(this._formSelector));
-    this._formList.forEach((item) => {
-      item.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-      });
-      this._setEventListeners();
-    });
+    this._setEventListeners();
   }
 }

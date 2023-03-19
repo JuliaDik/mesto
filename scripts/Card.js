@@ -1,12 +1,12 @@
 export class Card {
-  constructor(data, templateSelector, handleCardClick) {
+  constructor(data, templateSelector, handleImageCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
-    this._handleCardClick = handleCardClick;
+    this._handleImageCardClick = handleImageCardClick;
   }
 
-  _getTemplate() {
+  _getElement() {
     const cardElement = document
       .querySelector(this._templateSelector)
       .content
@@ -26,7 +26,7 @@ export class Card {
     this._buttonDelete.closest('.card').remove();
   }
 
-  // установить слушатели по клику на лайк, корзину, картинку
+  // установить слушатели по клику на лайк, корзину-удалить, картинку
   _setEventListeners() {
     this._buttonLike.addEventListener('click', () => {
       this._handleLike();
@@ -37,13 +37,13 @@ export class Card {
     });
 
     this._cardImage.addEventListener('click', () => {
-      this._handleCardClick(this._name, this._link);
+      this._handleImageCardClick(this._name, this._link);
     });
   }
 
-  // создать карточку на основе шаблона
+  // заполнить шаблон карточки данными, добавить слушатели
   generateCard() {
-    this._element = this._getTemplate();
+    this._element = this._getElement();
 
     this._cardImage = this._element.querySelector('.card__image');
     this._cardTitle = this._element.querySelector('.card__title');
