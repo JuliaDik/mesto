@@ -44,7 +44,6 @@ export const popupAdd = document.querySelector('.popup_type_add');
 export const popupCard = document.querySelector('.popup_type_image');
 export const popupCardImage = document.querySelector('.popup__image');
 export const popupCardCaption = document.querySelector('.popup__caption');
-export const openedPopup = document.querySelector('.popup_opened');
 
 // профиль
 export const profileName = document.querySelector('.profile__name');
@@ -54,11 +53,11 @@ export const profileOccupation = document.querySelector('.profile__occupation');
 export const cardsContainer = document.querySelector('.cards-container');
 
 // форма "Редактировать профиль"
-export const profileForm = document.forms['profile-form'];
+export const formProfile = document.forms['profile-form'];
 export const inputName = document.querySelector('.popup__input_type_name');
 export const inputOccupation = document.querySelector('.popup__input_type_occupation');
 
 // форма "Новое место"
-export const cardForm = document.forms['card-form'];
+export const formCard = document.forms['card-form'];
 export const inputTitle = document.querySelector('.popup__input_type_title');
 export const inputLink = document.querySelector('.popup__input_type_link');

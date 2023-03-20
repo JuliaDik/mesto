@@ -5,6 +5,7 @@ export class FormValidator {
     this._inactiveButtonClass = configValidation.inactiveButtonClass;
     this._inputErrorClass = configValidation.inputErrorClass;
     this._errorClass = configValidation.errorClass;
+
     this._formElement = formElement;
 
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
@@ -12,9 +13,9 @@ export class FormValidator {
   }
 
   // показать ошибку
-  _showInputError(inputElement, errorMessage) {
+  _showInputError(inputElement) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-    errorElement.textContent = errorMessage;
+    errorElement.textContent = inputElement.validationMessage;
     errorElement.classList.add(this._errorClass);
     inputElement.classList.add(this._inputErrorClass);
   }
@@ -30,7 +31,7 @@ export class FormValidator {
   // проверить на валидность конкретное поле ввода
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
-      this._showInputError(inputElement, inputElement.validationMessage);
+      this._showInputError(inputElement);
     } else {
       this._hideInputError(inputElement);
     }
@@ -67,11 +68,9 @@ export class FormValidator {
     }
   }
 
-  // установить слушатели на все поля ввода и кнопку submit формы,
-  // которую передаем через formElement
+  // установить слушатели на все поля ввода и submit формы
+  // форму передаем через formElement
   _setEventListeners() {
-    // до ввода данных кнопка неактивна
-    this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
@@ -81,6 +80,16 @@ export class FormValidator {
 
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
+    });
+  }
+
+  // сброс валидации
+  resetValidation() {
+    // кнопка неактивна
+    this._toggleButtonState();
+    // ошибки не показывать
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
     });
   }
 

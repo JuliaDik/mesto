@@ -11,34 +11,35 @@ import {
   popupCard,
   popupCardImage,
   popupCardCaption,
-  openedPopup,
   profileName,
   profileOccupation,
   cardsContainer,
-  profileForm,
+  formProfile,
   inputName,
   inputOccupation,
-  cardForm,
+  formCard,
   inputTitle,
   inputLink
 } from './constants.js';
 
-// валидатор формы "Редактировать профиль" (объект)
-const profileFormValidator = new FormValidator(configValidation, profileForm);
+// валидатор формы "Редактировать профиль"
+const formProfileValidator = new FormValidator(configValidation, formProfile);
+formProfileValidator.enableValidation();
 
-// валидатор формы "Новое место" (объект)
-const cardFormValidator = new FormValidator(configValidation, cardForm);
+// валидатор формы "Новое место"
+const formCardValidator = new FormValidator(configValidation, formCard);
+formCardValidator.enableValidation();
 
 //открыть попап
 const openPopup = popup => {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', handleEsc);
+  document.addEventListener('keydown', handleCloseByEscape);
 };
 
 // закрыть попап
 const closePopup = popup => {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', handleEsc);
+  document.removeEventListener('keydown', handleCloseByEscape);
 };
 
 // закрыть попап кликом на оверлей или крестик
@@ -51,8 +52,9 @@ popups.forEach(popup => {
 });
 
 // обработчик нажатия Escape
-const handleEsc = evt => {
+const handleCloseByEscape = evt => {
   if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
 };
@@ -77,48 +79,47 @@ initialCards.forEach(data => {
 });
 
 // обработчик открытия формы "Редактировать профиль"
-const handleProfileFormOpen = () => {
-  openPopup(popupEdit);
-  profileFormValidator.enableValidation();
+const handleFormProfileOpen = () => {
+  formProfileValidator.resetValidation();
   inputName.value = profileName.textContent;
   inputOccupation.value = profileOccupation.textContent;
+  openPopup(popupEdit);
 };
 
 // обработчик submit формы "Редактировать профиль"
-const handleProfileFormSubmit = () => {
+const handleFormProfileSubmit = () => {
   profileName.textContent = inputName.value;
   profileOccupation.textContent = inputOccupation.value;
   closePopup(popupEdit);
 };
 
 // обработчик открытия формы "Новое место"
-const handleCardFormOpen = () => {
+const handleFormCardOpen = () => {
+  formCardValidator.resetValidation();
   openPopup(popupAdd);
-  cardFormValidator.enableValidation();
 };
 
 // обработчик submit формы "Новое место"
-const handleCardFormSubmit = evt => {
+const handleFormCardSubmit = evt => {
   const data = {
     name: inputTitle.value,
     link: inputLink.value
   }
   cardsContainer.prepend(generateCard(data));
   evt.target.reset();
-  cardFormValidator.enableValidation();
   closePopup(popupAdd);
 };
 
 // СЛУШАТЕЛИ
 
 // открыть форму "Редактировать профиль"
-buttonEdit.addEventListener('click', handleProfileFormOpen);
+buttonEdit.addEventListener('click', handleFormProfileOpen);
 
 // сохранить (закрыть) форму "Редактировать профиль"
-profileForm.addEventListener('submit', handleProfileFormSubmit);
+formProfile.addEventListener('submit', handleFormProfileSubmit);
 
 // открыть форму "Новое место"
-buttonAdd.addEventListener('click', handleCardFormOpen);
+buttonAdd.addEventListener('click', handleFormCardOpen);
 
 // сохранить (закрыть) форму "Новое место"
-cardForm.addEventListener('submit', handleCardFormSubmit);
+formCard.addEventListener('submit', handleFormCardSubmit);
