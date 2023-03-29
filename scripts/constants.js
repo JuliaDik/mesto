@@ -50,7 +50,7 @@ export const profileName = document.querySelector('.profile__name');
 export const profileOccupation = document.querySelector('.profile__occupation');
 
 // контейнер для карточек
-export const cardsContainer = document.querySelector('.cards-container');
+export const cardsContainer = '.cards-container';
 
 // форма "Редактировать профиль"
 export const formProfile = document.forms['profile-form'];
