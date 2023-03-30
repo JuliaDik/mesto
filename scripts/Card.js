@@ -1,9 +1,9 @@
 export default class Card {
-  constructor(item, templateSelector, handleImageCardClick) {
+  constructor(item, templateSelector, handleCardClick) {
     this._name = item.name;
     this._link = item.link;
     this._templateSelector = templateSelector;
-    this._handleImageCardClick = handleImageCardClick;
+    this._handleCardClick = handleCardClick;
   }
 
   _getElement() {
@@ -37,18 +37,18 @@ export default class Card {
     });
 
     this._cardImage.addEventListener('click', () => {
-      this._handleImageCardClick(this._name, this._link);
+      this._handleCardClick(this._cardImage);
     });
   }
 
   // заполнить шаблон карточки данными, добавить слушатели
   generateCard() {
-    this._element = this._getElement();
+    this._card = this._getElement();
 
-    this._cardImage = this._element.querySelector('.card__image');
-    this._cardTitle = this._element.querySelector('.card__title');
-    this._buttonLike = this._element.querySelector('.card__like-button');
-    this._buttonDelete = this._element.querySelector('.card__delete-button');
+    this._cardImage = this._card.querySelector('.card__image');
+    this._cardTitle = this._card.querySelector('.card__title');
+    this._buttonLike = this._card.querySelector('.card__like-button');
+    this._buttonDelete = this._card.querySelector('.card__delete-button');
 
     this._setEventListeners();
 
@@ -56,6 +56,6 @@ export default class Card {
     this._cardImage.alt = this._name;
     this._cardTitle.textContent = this._name;
 
-    return this._element;
+    return this._card;
   }
 }

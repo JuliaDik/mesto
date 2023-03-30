@@ -33,31 +33,27 @@ export const configValidation = {
   errorClass: 'popup__error_visible'
 };
 
+// попапы
+export const popupEditProfileSelector = '.popup_type_edit';
+export const popupAddCardSelector = '.popup_type_add';
+export const popupCardImageSelector = '.popup_type_image';
+
 // кнопки
 export const buttonEdit = document.querySelector('.profile__edit-button');
 export const buttonAdd = document.querySelector('.profile__add-button');
-
-// попапы
-export const popups = document.querySelectorAll('.popup');
-export const popupEdit = document.querySelector('.popup_type_edit');
-export const popupAdd = document.querySelector('.popup_type_add');
-export const popupCard = document.querySelector('.popup_type_image');
-export const popupCardImage = document.querySelector('.popup__image');
-export const popupCardCaption = document.querySelector('.popup__caption');
-
-// профиль
-export const profileName = document.querySelector('.profile__name');
-export const profileOccupation = document.querySelector('.profile__occupation');
-
-// контейнер для карточек
-export const cardsContainer = '.cards-container';
 
 // форма "Редактировать профиль"
 export const formProfile = document.forms['profile-form'];
 export const inputName = document.querySelector('.popup__input_type_name');
 export const inputOccupation = document.querySelector('.popup__input_type_occupation');
 
+// профиль
+export const profileName = document.querySelector('.profile__name');
+export const profileOccupation = document.querySelector('.profile__occupation');
+
 // форма "Новое место"
 export const formCard = document.forms['card-form'];
-export const inputTitle = document.querySelector('.popup__input_type_title');
-export const inputLink = document.querySelector('.popup__input_type_link');
+
+// template и контейнер для карточек
+export const cardTemplate = '.card-template';
+export const cardsContainer = '.cards-container';
