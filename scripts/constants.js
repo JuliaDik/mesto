@@ -48,12 +48,15 @@ export const inputName = document.querySelector('.popup__input_type_name');
 export const inputOccupation = document.querySelector('.popup__input_type_occupation');
 
 // профиль
-export const profileName = document.querySelector('.profile__name');
-export const profileOccupation = document.querySelector('.profile__occupation');
+export const profileInfo = {
+  userNameSelector: '.profile__name',
+  userOccupationSelector: '.profile__occupation'
+}
 
 // форма "Новое место"
 export const formCard = document.forms['card-form'];
 
 // template и контейнер для карточек
-export const cardTemplate = '.card-template';
-export const cardsContainer = '.cards-container';
+export const cardTemplateSelector = '.card-template';
+export const cardsContainerSelector = '.cards-container';
+

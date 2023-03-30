@@ -2,6 +2,7 @@ import Section from './Section.js';
 import Card from './Card.js';
 import PopupWithForm from './PopupWithForm.js';
 import PopupWithImage from './PopupWithImage.js';
+import UserInfo from './UserInfo.js';
 import FormValidator from './FormValidator.js';
 import {
   initialCards,
@@ -14,35 +15,34 @@ import {
   formProfile,
   inputName,
   inputOccupation,
-  profileName,
-  profileOccupation,
+  profileInfo,
   formCard,
-  cardTemplate,
-  cardsContainer
+  cardTemplateSelector,
+  cardsContainerSelector
 } from './constants.js';
 
 // валидация формы "Редактировать профиль"
 const formProfileValidator = new FormValidator(configValidation, formProfile);
-
 formProfileValidator.enableValidation();
 
 // валидация формы "Новое место"
 const formCardValidator = new FormValidator(configValidation, formCard);
-
 formCardValidator.enableValidation();
+
+const userInfo = new UserInfo(profileInfo);
 
 // обработчик редактирования профиля
 const handleEditProfile = () => {
+  const {name, occupation} = userInfo.getUserInfo();
+  inputName.value = name;
+  inputOccupation.value = occupation;
   formProfileValidator.resetValidation();
-  inputName.value = profileName.textContent;
-  inputOccupation.value = profileOccupation.textContent;
   popupEditProfile.open();
 };
 
 // обработчик submit профиля
-const handleSubmitProfile = () => {
-  profileName.textContent = inputName.value;
-  profileOccupation.textContent = inputOccupation.value;
+const handleSubmitProfile = (data) => {
+  userInfo.setUserInfo(data);
   popupEditProfile.close();
 };
 
@@ -59,13 +59,13 @@ const handleSubmitCard = (data) => {
 };
 
 // обработчик клика по картинке карточки (открыть)
-const handleCardClick = (cardImage) => {
-  popupCardImage.open(cardImage);
+const handleCardClick = (image) => {
+  popupCardImage.open(image);
 };
 
 // отрисовать отдельную карточку
 const renderCard = (data) => {
-  const card = new Card(data, cardTemplate, handleCardClick);
+  const card = new Card(data, cardTemplateSelector, handleCardClick);
   const cardElement = card.generateCard();
   cardsList.addItem(cardElement);
 };
@@ -74,7 +74,7 @@ const renderCard = (data) => {
 const cardsList = new Section({
   items: initialCards,
   renderer: renderCard
-}, cardsContainer);
+}, cardsContainerSelector);
 
 cardsList.renderItems();
 
@@ -86,15 +86,12 @@ buttonAdd.addEventListener('click', handleAddCard);
 
 // слушатель submit профиля
 const popupEditProfile = new PopupWithForm(popupEditProfileSelector, handleSubmitProfile);
-
 popupEditProfile.setEventListeners();
 
 // слушатель submit карточки
 const popupAddCard = new PopupWithForm(popupAddCardSelector, handleSubmitCard);
-
 popupAddCard.setEventListeners();
 
 // слушатель закрытия картинки карточки
 const popupCardImage = new PopupWithImage(popupCardImageSelector);
-
 popupCardImage.setEventListeners();
