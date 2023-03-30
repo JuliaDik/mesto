@@ -53,22 +53,22 @@ const handleAddCard = () => {
 };
 
 // обработчик submit карточки
-const handleSubmitCard = (data) => {
-  renderCard(data);
+const handleSubmitCard = ({ title: name, link }) => {
+  renderCard({ name, link });
   popupAddCard.close();
 };
 
 // обработчик клика по картинке карточки (открыть)
-const handleCardClick = (image) => {
-  popupCardImage.open(image);
+const handleCardClick = (cardImageSrc, cardImageAlt) => {
+  popupCardImage.open(cardImageSrc, cardImageAlt);
 };
 
-// отрисовать отдельную карточку
+// отрисовать карточку
 const renderCard = (data) => {
   const card = new Card(data, cardTemplateSelector, handleCardClick);
-  const cardElement = card.generateCard();
-  cardsList.addItem(cardElement);
-};
+  const generatedCard = card.generateCard();
+  cardsList.addItem(generatedCard);
+}
 
 // отрисовать все карточки
 const cardsList = new Section({
