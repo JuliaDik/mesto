@@ -1,9 +1,9 @@
-import Section from './Section.js';
-import Card from './Card.js';
-import PopupWithForm from './PopupWithForm.js';
-import PopupWithImage from './PopupWithImage.js';
-import UserInfo from './UserInfo.js';
-import FormValidator from './FormValidator.js';
+import Section from '../components/Section.js';
+import Card from '../components/Card.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
+import FormValidator from '../components/FormValidator.js';
 import {
   initialCards,
   configValidation,
@@ -16,7 +16,7 @@ import {
   formCard,
   cardTemplateSelector,
   cardsContainerSelector
-} from './constants.js';
+} from '../utils/constants.js';
 
 // валидация формы "Редактировать профиль"
 const formProfileValidator = new FormValidator(configValidation, formProfile);
