@@ -33,10 +33,7 @@ export const configValidation = {
   errorClass: 'popup__error_visible'
 };
 
-// попапы
-export const popupEditProfileSelector = '.popup_type_edit';
-export const popupAddCardSelector = '.popup_type_add';
-export const popupCardImageSelector = '.popup_type_image';
+// ЭЛЕМЕНТЫ
 
 // кнопки
 export const buttonEdit = document.querySelector('.profile__edit-button');
@@ -46,6 +43,15 @@ export const buttonAdd = document.querySelector('.profile__add-button');
 export const formProfile = document.forms['profile-form'];
 export const formCard = document.forms['card-form'];
 
-// template и контейнер для карточек
+// СЕЛЕКТОРЫ
+
+// попапы
+export const popupFormProfileSelector = '.popup_type_edit';
+export const popupFormCardSelector = '.popup_type_add';
+export const popupCardImageSelector = '.popup_type_image';
+
+// template карточки
 export const cardTemplateSelector = '.card-template';
+
+// контейнер для карточек
 export const cardsContainerSelector = '.cards-container';

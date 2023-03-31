@@ -7,63 +7,63 @@ import FormValidator from '../components/FormValidator.js';
 import {
   initialCards,
   configValidation,
-  popupEditProfileSelector,
-  popupAddCardSelector,
-  popupCardImageSelector,
   buttonEdit,
   buttonAdd,
   formProfile,
   formCard,
+  popupFormProfileSelector,
+  popupFormCardSelector,
+  popupCardImageSelector,
   cardTemplateSelector,
   cardsContainerSelector
 } from '../utils/constants.js';
 
-// валидация формы "Редактировать профиль"
-const formProfileValidator = new FormValidator(configValidation, formProfile);
-formProfileValidator.enableValidation();
-
-// валидация формы "Новое место"
-const formCardValidator = new FormValidator(configValidation, formCard);
-formCardValidator.enableValidation();
+// РЕДАКТИРОВАНИЕ ПРОФИЛЯ
 
 const userInfo = new UserInfo({
   userNameSelector: '.profile__name',
   userOccupationSelector: '.profile__occupation'
 });
 
-// обработчик редактирования профиля
+// обработчик открытия формы "Редактировать профиль"
 const handleEditProfile = () => {
   const { name, occupation } = userInfo.getUserInfo();
   formProfile.name.value = name;
   formProfile.occupation.value = occupation;
   formProfileValidator.resetValidation();
-  popupEditProfile.open();
+  popupFormProfile.open();
 };
 
-// обработчик submit профиля
+// обработчик submit/закрытия формы "Редактировать профиль"
 const handleSubmitProfile = (data) => {
   userInfo.setUserInfo(data);
-  popupEditProfile.close();
+  popupFormProfile.close();
 };
 
-// обработчик добавления карточки
+// ДОБАВЛЕНИЕ КАРТОЧКИ
+
+// обработчик открытия формы "Новое место"
 const handleAddCard = () => {
   formCardValidator.resetValidation();
-  popupAddCard.open();
+  popupFormCard.open();
 };
 
-// обработчик submit карточки
+// обработчик submit/закрытия формы "Новое место"
 const handleSubmitCard = ({ title: name, link }) => {
   renderCard({ name, link });
-  popupAddCard.close();
+  popupFormCard.close();
 };
 
-// обработчик клика по картинке карточки (открыть)
+// КАРТИНКА КАРТОЧКИ
+
+// обработчик открытия картинки карточки
 const handleCardClick = (cardImageSrc, cardImageAlt) => {
   popupCardImage.open(cardImageSrc, cardImageAlt);
 };
 
-// отрисовать карточку
+// ОТРИСОВКА КАРТОЧЕК
+
+// отрисовать отдельную карточку
 const renderCard = (data) => {
   const card = new Card(data, cardTemplateSelector, handleCardClick);
   const generatedCard = card.generateCard();
@@ -78,20 +78,32 @@ const cardsList = new Section({
 
 cardsList.renderItems();
 
-// слушатель клика по кнопке редактировать профиль (открыть)
+// ВАЛИДАЦИЯ ФОРМ
+
+// валидация формы "Редактировать профиль"
+const formProfileValidator = new FormValidator(configValidation, formProfile);
+formProfileValidator.enableValidation();
+
+// валидация формы "Новое место"
+const formCardValidator = new FormValidator(configValidation, formCard);
+formCardValidator.enableValidation();
+
+// СЛУШАТЕЛИ СОБЫТИЙ
+
+// слушатель click по кнопке редактировать профиль
 buttonEdit.addEventListener('click', handleEditProfile);
 
-// слушатель клика по кнопке добавить карточку (открыть)
+// слушатель click по кнопке добавить карточку
 buttonAdd.addEventListener('click', handleAddCard);
 
-// слушатель submit профиля
-const popupEditProfile = new PopupWithForm(popupEditProfileSelector, handleSubmitProfile);
-popupEditProfile.setEventListeners();
+// слушатель submit формы "Редактировать профиль"
+const popupFormProfile = new PopupWithForm(popupFormProfileSelector, handleSubmitProfile);
+popupFormProfile.setEventListeners();
 
-// слушатель submit карточки
-const popupAddCard = new PopupWithForm(popupAddCardSelector, handleSubmitCard);
-popupAddCard.setEventListeners();
+// слушатель submit формы "Новое место"
+const popupFormCard = new PopupWithForm(popupFormCardSelector, handleSubmitCard);
+popupFormCard.setEventListeners();
 
-// слушатель закрытия картинки карточки
+// слушатель close картинки карточки
 const popupCardImage = new PopupWithImage(popupCardImageSelector);
 popupCardImage.setEventListeners();
