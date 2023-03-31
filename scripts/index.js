@@ -13,9 +13,6 @@ import {
   buttonEdit,
   buttonAdd,
   formProfile,
-  inputName,
-  inputOccupation,
-  profileInfo,
   formCard,
   cardTemplateSelector,
   cardsContainerSelector
@@ -29,13 +26,16 @@ formProfileValidator.enableValidation();
 const formCardValidator = new FormValidator(configValidation, formCard);
 formCardValidator.enableValidation();
 
-const userInfo = new UserInfo(profileInfo);
+const userInfo = new UserInfo({
+  userNameSelector: '.profile__name',
+  userOccupationSelector: '.profile__occupation'
+});
 
 // обработчик редактирования профиля
 const handleEditProfile = () => {
-  const {name, occupation} = userInfo.getUserInfo();
-  inputName.value = name;
-  inputOccupation.value = occupation;
+  const { name, occupation } = userInfo.getUserInfo();
+  formProfile.name.value = name;
+  formProfile.occupation.value = occupation;
   formProfileValidator.resetValidation();
   popupEditProfile.open();
 };

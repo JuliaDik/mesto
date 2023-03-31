@@ -42,21 +42,10 @@ export const popupCardImageSelector = '.popup_type_image';
 export const buttonEdit = document.querySelector('.profile__edit-button');
 export const buttonAdd = document.querySelector('.profile__add-button');
 
-// форма "Редактировать профиль"
+// формы
 export const formProfile = document.forms['profile-form'];
-export const inputName = document.querySelector('.popup__input_type_name');
-export const inputOccupation = document.querySelector('.popup__input_type_occupation');
-
-// профиль
-export const profileInfo = {
-  userNameSelector: '.profile__name',
-  userOccupationSelector: '.profile__occupation'
-}
-
-// форма "Новое место"
 export const formCard = document.forms['card-form'];
 
 // template и контейнер для карточек
 export const cardTemplateSelector = '.card-template';
 export const cardsContainerSelector = '.cards-container';
-
