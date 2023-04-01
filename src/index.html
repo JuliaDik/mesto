@@ -12,16 +12,14 @@
       content="mesto, russia, блог, публикация фотографий, путешествие, россия, природа, города, достопримечательности">
     <meta name="author" content="Юлия Диколенко">
     <title>Mesto Russia</title>
-    <link rel="icon" href="images/favicon.png">
-    <link rel="stylesheet" href="pages/index.css">
-    <script defer type="module" src="pages/index.js"></script>
+    <link rel="icon" href="<%=require('./images/favicon.png')%>">
   </head>
   <body class="page">
     <!-- header -->
     <header class="header">
       <img
         class="header__logo"
-        src="images/logo.svg"
+        src="<%=require('./images/logo.svg')%>"
         alt="Логотип">
     </header>
     <!-- main -->
@@ -30,7 +28,7 @@
       <section class="profile" aria-label="профиль пользователя">
         <img
           class="profile__image"
-          src="images/avatar.jpg"
+          src="<%=require('./images/avatar.jpg')%>"
           alt="Аватар пользователя">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
