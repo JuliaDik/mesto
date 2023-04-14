@@ -1,4 +1,5 @@
 import './index.css';
+import Api from '../components/Api.js';
 import Section from '../components/Section.js';
 import Card from '../components/Card.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -19,7 +20,25 @@ import {
   cardsContainerSelector
 } from '../utils/constants.js';
 
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
+  headers: {
+    authorization: '2ddcea56-4974-44a0-8239-7ed219c4b293',
+    'Content-Type': 'application/json'
+  }
+}); 
+
 // РЕДАКТИРОВАНИЕ ПРОФИЛЯ
+
+// получить данные о пользователе с сервера
+api.getUserInfo()
+  .then((res) => {
+    userInfo.setUserInfo(res);
+    console.log(res);
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`);
+  }); 
 
 const userInfo = new UserInfo({
   userNameSelector: '.profile__name',
