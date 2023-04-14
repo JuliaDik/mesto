@@ -44,4 +44,4 @@ Mesto - сервис для публикации фотографий.
 [Проектная работа №6](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)
 
 ## Ссылка на проект
-[Проект на GitHub Pages](https://juliadik.github.io/mesto/index.html)
+[Проект на GitHub Pages](https://juliadik.github.io/mesto/)
