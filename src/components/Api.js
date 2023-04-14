@@ -18,8 +18,18 @@ export default class Api {
       })
   }
   
+  // загрузить начальные карточки с сервера
   getInitialCards() {
-    // ...
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'GET',
+      headers: this._headers
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
   }
 
   // другие методы работы с API

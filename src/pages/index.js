@@ -7,7 +7,6 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 import {
-  initialCards,
   configValidation,
   buttonEdit,
   buttonAdd,
@@ -30,20 +29,19 @@ const api = new Api({
 
 // РЕДАКТИРОВАНИЕ ПРОФИЛЯ
 
-// получить данные о пользователе с сервера
-api.getUserInfo()
-  .then((res) => {
-    userInfo.setUserInfo(res);
-    console.log(res);
-  })
-  .catch((err) => {
-    console.log(`Ошибка: ${err}`);
-  }); 
-
 const userInfo = new UserInfo({
   userNameSelector: '.profile__name',
   userOccupationSelector: '.profile__occupation'
 });
+
+// получить данные о пользователе с сервера
+api.getUserInfo()
+  .then((userData) => {
+    userInfo.setUserInfo(userData);
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`);
+  }); 
 
 // обработчик открытия формы "Редактировать профиль"
 const handleEditProfile = () => {
@@ -83,6 +81,8 @@ const handleCardClick = (cardImageSrc, cardImageAlt) => {
 
 // ОТРИСОВКА КАРТОЧЕК
 
+let cardsList;
+
 // создать отдельную карточку
 const createCard = (data) => {
   const card = new Card(data, cardTemplateSelector, handleCardClick);
@@ -95,12 +95,22 @@ const renderCard = (data) => {
 }
 
 // отрисовать все карточки
-const cardsList = new Section({
-  items: initialCards,
-  renderer: renderCard
-}, cardsContainerSelector);
+const renderInitialCards = (cardsData) => {
+  cardsList = new Section({
+    items: cardsData,
+    renderer: renderCard
+  }, cardsContainerSelector);
+  cardsList.renderItems();
+}
 
-cardsList.renderItems();
+// загрузить начальные карточки с сервера
+api.getInitialCards()
+  .then((cardsData) => {
+    renderInitialCards(cardsData);
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`);
+  }); 
 
 // ВАЛИДАЦИЯ ФОРМ
 
