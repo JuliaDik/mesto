@@ -31,7 +31,7 @@ const api = new Api({
 
 const userInfo = new UserInfo({
   userNameSelector: '.profile__name',
-  userOccupationSelector: '.profile__occupation'
+  userAboutSelector: '.profile__about'
 });
 
 // получить данные о пользователе с сервера
@@ -45,17 +45,23 @@ api.getUserInfo()
 
 // обработчик открытия формы "Редактировать профиль"
 const handleEditProfile = () => {
-  const { name, occupation } = userInfo.getUserInfo();
+  const { name, about } = userInfo.getUserInfo();
   formProfile.name.value = name;
-  formProfile.occupation.value = occupation;
+  formProfile.about.value = about;
   formProfileValidator.resetValidation();
   popupFormProfile.open();
 };
 
 // обработчик submit/закрытия формы "Редактировать профиль"
-const handleSubmitProfile = (data) => {
-  userInfo.setUserInfo(data);
-  popupFormProfile.close();
+const handleSubmitProfile = (userData) => {
+  api.setUserInfo(userData)
+    .then((userData) => {
+      userInfo.setUserInfo(userData);
+      popupFormProfile.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    }); 
 };
 
 // ДОБАВЛЕНИЕ КАРТОЧКИ

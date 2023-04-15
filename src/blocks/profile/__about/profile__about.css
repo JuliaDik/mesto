@@ -1,4 +1,4 @@
-.profile__occupation {
+.profile__about {
   margin: 0;
   font-weight: 400;
   font-size: calc((100vw - 425px) / (1280 - 425) * (18 - 14) + 14px);
@@ -10,15 +10,15 @@
 
 /* 768px */
 @media (max-width: 768px) {
-  .profile__occupation {
-    grid-area: occupation;
+  .profile__about {
+    grid-area: about;
     text-align: center;
   }
 }
 
 /* 425px */
 @media (max-width: 425px) {
-  .profile__occupation {
+  .profile__about {
     font-size: 14px;
   }
 }
