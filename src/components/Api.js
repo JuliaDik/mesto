@@ -42,4 +42,17 @@ export default class Api {
     })
       .then(this._checkResponse);
   }
+
+  // добавить новую карточку на сервер
+  addCard({ name, link }) {
+    return fetch(`${this._address}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        link: link
+      })
+    })
+      .then(this._checkResponse);
+  }
 }

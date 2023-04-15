@@ -73,9 +73,15 @@ const handleAddCard = () => {
 };
 
 // обработчик submit/закрытия формы "Новое место"
-const handleSubmitCard = ({ title: name, link }) => {
-  renderCard({ name, link });
-  popupFormCard.close();
+const handleSubmitCard = ({ name, link }) => {
+  api.addCard({ name, link })
+    .then((cardData) => {
+      renderCard(cardData);
+      popupFormCard.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    }); 
 };
 
 // КАРТИНКА КАРТОЧКИ
