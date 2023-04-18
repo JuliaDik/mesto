@@ -65,16 +65,41 @@ const handleSubmitFormProfile = (userData) => {
 // ДОБАВЛЕНИЕ КАРТОЧЕК
 
 // клик по картинке
-const handleCardClick = (ImageSrc, ImageAlt) => {
-  popupCardImage.open(ImageSrc, ImageAlt);
+const handleCardClick = (cardImageSrc, cardImageAlt) => {
+  popupCardImage.open(cardImageSrc, cardImageAlt);
 };
 
 // добавить карточку
-const renderCard = (data) => {
-  const card = new Card(data, cardTemplateSelector, handleCardClick);
+const renderCard = (cardData) => {
+  const card = new Card(
+    cardData,
+    cardTemplateSelector,
+    handleCardClick,
+    {
+      handleLikeClick: (cardId, isLiked) => {
+        if (isLiked) {
+          api.deleteLike(cardId)
+            .then((cardData) => {
+              card.deleteLike(cardData.likes);
+            })
+            .catch((err) => {
+              console.log(`Ошибка: ${err}`);
+            });
+        } else {
+          api.putLike(cardId)
+            .then((cardData) => {
+              card.putLike(cardData.likes);
+            })
+            .catch((err) => {
+              console.log(`Ошибка: ${err}`);
+            });
+        }
+      }
+    }
+  );
   const generatedCard = card.generateCard();
   cardsContainer.addItem(generatedCard);
-}
+};
 
 // открыть форму "Новое место"
 const handleOpenFormCard = () => {
@@ -91,7 +116,7 @@ const handleSubmitFormCard = (cardData) => {
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
-    }); 
+    });
 };
 
 // сервер: загрузить массив карточек

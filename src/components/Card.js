@@ -1,9 +1,13 @@
 export default class Card {
-  constructor(data, templateSelector, handleCardClick) {
-    this._name = data.name;
-    this._link = data.link;
+  constructor(cardData, templateSelector, handleCardClick, { handleLikeClick }) {
+    this._name = cardData.name;
+    this._link = cardData.link;
+    this._likes = cardData.likes;
+    this._cardId = cardData._id;
+    this._ownerId = cardData.owner._id;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleLikeClick = handleLikeClick;
   }
 
   _getCardElement() {
@@ -22,8 +26,26 @@ export default class Card {
   }
 
   // поставить лайк
-  _handleLike() {
-    this._buttonLike.classList.toggle('card__like-button_active');
+  putLike(likesArray) {
+    this._buttonLike.classList.add('card__like-button_active');
+    this._likeCounter.textContent = likesArray.length;
+    this.isLiked = true;
+  }
+
+  // удалить лайк
+  deleteLike(likesArray) {
+    this._buttonLike.classList.remove('card__like-button_active');
+    this._likeCounter.textContent = likesArray.length;
+    this.isLiked = false;
+  }
+
+  // проверить, стоит ли мой лайк
+  isLiked() {
+    if (this._likes.some((like) => like._id === this._ownerId)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   // установить слушатели по клику на корзину, лайк, картинку
@@ -33,7 +55,7 @@ export default class Card {
     });
 
     this._buttonLike.addEventListener('click', () => {
-      this._handleLike();
+      this._handleLikeClick(this._cardId, this.isLiked);
     });
 
     this._cardImage.addEventListener('click', () => {
@@ -49,6 +71,9 @@ export default class Card {
     this._cardTitle = this._card.querySelector('.card__title');
     this._buttonDelete = this._card.querySelector('.card__delete-button');
     this._buttonLike = this._card.querySelector('.card__like-button');
+    this._likeCounter = this._card.querySelector('.card__like-counter');
+    
+    this._likeCounter.textContent = this._likes.length;
 
     this._setEventListeners();
 
