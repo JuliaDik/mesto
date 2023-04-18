@@ -83,8 +83,8 @@ const handleOpenFormCard = () => {
 };
 
 // submit + закрыть форму "Новое место"
-const handleSubmitFormCard = ({ name, link }) => {
-  api.postCard({ name, link })
+const handleSubmitFormCard = (cardData) => {
+  api.postCard(cardData)
     .then((cardData) => {
       renderCard(cardData);
       popupFormCard.close();
