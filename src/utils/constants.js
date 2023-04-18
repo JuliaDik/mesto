@@ -23,6 +23,10 @@ export const popupFormProfileSelector = '.popup_type_edit';
 export const popupFormCardSelector = '.popup_type_add';
 export const popupCardImageSelector = '.popup_type_image';
 
+// профиль
+export const userNameSelector = '.profile__name';
+export const userAboutSelector = '.profile__about';
+
 // template карточки
 export const cardTemplateSelector = '.card-template';
 

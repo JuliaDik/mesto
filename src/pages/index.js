@@ -1,10 +1,10 @@
 import './index.css';
 import Api from '../components/Api.js';
-import Section from '../components/Section.js';
 import Card from '../components/Card.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
-import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 import {
   configValidation,
@@ -15,6 +15,8 @@ import {
   popupFormProfileSelector,
   popupFormCardSelector,
   popupCardImageSelector,
+  userNameSelector,
+  userAboutSelector,
   cardTemplateSelector,
   cardsContainerSelector
 } from '../utils/constants.js';
@@ -25,26 +27,21 @@ const api = new Api({
     authorization: '2ddcea56-4974-44a0-8239-7ed219c4b293',
     'Content-Type': 'application/json'
   }
-}); 
+});
 
 // РЕДАКТИРОВАНИЕ ПРОФИЛЯ
 
-const userInfo = new UserInfo({
-  userNameSelector: '.profile__name',
-  userAboutSelector: '.profile__about'
-});
-
-// получить данные о пользователе с сервера
+// сервер: получить данные о пользователе
 api.getUserInfo()
   .then((userData) => {
     userInfo.setUserInfo(userData);
   })
   .catch((err) => {
     console.log(`Ошибка: ${err}`);
-  }); 
+  });
 
-// обработчик открытия формы "Редактировать профиль"
-const handleEditProfile = () => {
+// открыть форму "Редактировать профиль"
+const handleOpenFormProfile = () => {
   const { name, about } = userInfo.getUserInfo();
   formProfile.name.value = name;
   formProfile.about.value = about;
@@ -52,9 +49,10 @@ const handleEditProfile = () => {
   popupFormProfile.open();
 };
 
-// обработчик submit/закрытия формы "Редактировать профиль"
-const handleSubmitProfile = (userData) => {
-  api.setUserInfo(userData)
+// submit + закрыть форму "Редактировать профиль"
+const handleSubmitFormProfile = (userData) => {
+  // сервер: обновить данные о пользователе
+  api.patchUserInfo(userData)
     .then((userData) => {
       userInfo.setUserInfo(userData);
       popupFormProfile.close();
@@ -64,17 +62,29 @@ const handleSubmitProfile = (userData) => {
     }); 
 };
 
-// ДОБАВЛЕНИЕ КАРТОЧКИ
+// ДОБАВЛЕНИЕ КАРТОЧЕК
 
-// обработчик открытия формы "Новое место"
-const handleAddCard = () => {
+// клик по картинке
+const handleCardClick = (ImageSrc, ImageAlt) => {
+  popupCardImage.open(ImageSrc, ImageAlt);
+};
+
+// добавить карточку
+const renderCard = (data) => {
+  const card = new Card(data, cardTemplateSelector, handleCardClick);
+  const generatedCard = card.generateCard();
+  cardsContainer.addItem(generatedCard);
+}
+
+// открыть форму "Новое место"
+const handleOpenFormCard = () => {
   formCardValidator.resetValidation();
   popupFormCard.open();
 };
 
-// обработчик submit/закрытия формы "Новое место"
-const handleSubmitCard = ({ name, link }) => {
-  api.addCard({ name, link })
+// submit + закрыть форму "Новое место"
+const handleSubmitFormCard = ({ name, link }) => {
+  api.postCard({ name, link })
     .then((cardData) => {
       renderCard(cardData);
       popupFormCard.close();
@@ -84,72 +94,33 @@ const handleSubmitCard = ({ name, link }) => {
     }); 
 };
 
-// КАРТИНКА КАРТОЧКИ
-
-// обработчик открытия картинки карточки
-const handleCardClick = (cardImageSrc, cardImageAlt) => {
-  popupCardImage.open(cardImageSrc, cardImageAlt);
-};
-
-// ОТРИСОВКА КАРТОЧЕК
-
-let cardsList;
-
-// создать отдельную карточку
-const createCard = (data) => {
-  const card = new Card(data, cardTemplateSelector, handleCardClick);
-  return card.generateCard();
-}
-
-// отрисовать готовую карточку
-const renderCard = (data) => {
-  cardsList.addItem(createCard(data));
-}
-
-// отрисовать все карточки
-const renderInitialCards = (cardsData) => {
-  cardsList = new Section({
-    items: cardsData,
-    renderer: renderCard
-  }, cardsContainerSelector);
-  cardsList.renderItems();
-}
-
-// загрузить начальные карточки с сервера
-api.getInitialCards()
-  .then((cardsData) => {
-    renderInitialCards(cardsData);
+// сервер: загрузить массив карточек
+api.getCards()
+  .then((cards) => {
+    cardsContainer.renderItems(cards);
   })
   .catch((err) => {
     console.log(`Ошибка: ${err}`);
-  }); 
+  });
+
+// ЭКЗЕМПЛЯРЫ КЛАССОВ
+const userInfo = new UserInfo(userNameSelector, userAboutSelector);
+const cardsContainer = new Section({ renderer: renderCard }, cardsContainerSelector);
+const popupFormProfile = new PopupWithForm(popupFormProfileSelector, handleSubmitFormProfile);
+const popupFormCard = new PopupWithForm(popupFormCardSelector, handleSubmitFormCard);
+const popupCardImage = new PopupWithImage(popupCardImageSelector);
+const formProfileValidator = new FormValidator(configValidation, formProfile);
+const formCardValidator = new FormValidator(configValidation, formCard); 
 
 // ВАЛИДАЦИЯ ФОРМ
 
-// валидация формы "Редактировать профиль"
-const formProfileValidator = new FormValidator(configValidation, formProfile);
 formProfileValidator.enableValidation();
-
-// валидация формы "Новое место"
-const formCardValidator = new FormValidator(configValidation, formCard);
 formCardValidator.enableValidation();
 
 // СЛУШАТЕЛИ СОБЫТИЙ
 
-// слушатель click по кнопке редактировать профиль
-buttonEdit.addEventListener('click', handleEditProfile);
-
-// слушатель click по кнопке добавить карточку
-buttonAdd.addEventListener('click', handleAddCard);
-
-// слушатель submit формы "Редактировать профиль"
-const popupFormProfile = new PopupWithForm(popupFormProfileSelector, handleSubmitProfile);
+buttonEdit.addEventListener('click', handleOpenFormProfile);
+buttonAdd.addEventListener('click', handleOpenFormCard);
 popupFormProfile.setEventListeners();
-
-// слушатель submit формы "Новое место"
-const popupFormCard = new PopupWithForm(popupFormCardSelector, handleSubmitCard);
 popupFormCard.setEventListeners();
-
-// слушатель close картинки карточки
-const popupCardImage = new PopupWithImage(popupCardImageSelector);
 popupCardImage.setEventListeners();

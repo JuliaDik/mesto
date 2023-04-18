@@ -144,6 +144,25 @@
         <figcaption class="popup__caption"></figcaption>
       </figure>
     </div>
+    <!-- popup: удаление карточки -->
+    <div class="popup popup_type_delete">
+      <div class="popup__container">
+        <button
+          class="popup__close-button"
+          type="button"
+          aria-label="кнопка-закрыть">
+        </button>
+        <form class="popup__form" name="delete-form">
+          <h3 class="popup__title popup__title_type_delete">Вы уверены?</h3>
+          <button
+            class="popup__submit-button"
+            type="submit"
+            aria-label="кнопка-сохранить">
+            Да
+          </button>
+        </form>
+      </div>
+    </div>
     <!-- template: шаблон карточки -->
     <template class="card-template">
       <li class="card">
@@ -161,7 +180,7 @@
               type="button"
               aria-label="кнопка-нравится">
             </button>
-            <span class="card__like-counter">0</span>
+            <span class="card__like-counter"></span>
           </div>
         </div>
       </li>
