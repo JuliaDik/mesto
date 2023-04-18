@@ -30,6 +30,7 @@
 .popup__close-button{background:transparent url(ad98de32e342afafa118.svg) no-repeat 50%/contain;border:none;cursor:pointer;height:32px;padding:0;position:absolute;right:-40px;top:-40px;transition:opacity .2s ease-in-out;width:32px}@media (max-width:568px){.popup__close-button{height:20px;right:0;top:-36px;width:20px}}.popup__close-button:hover{opacity:.6}
 .popup__form{display:flex;flex-direction:column}
 .popup__title{font-size:24px;font-weight:900;line-height:1.2;margin:0 0 47px}@media (max-width:568px){.popup__title{font-size:18px;margin:0 0 75px}}
+.popup__title_type_delete{margin-bottom:38px}
 .popup__input{border:none;border-bottom:1px solid #c4c4c4;box-sizing:border-box;font-size:14px;font-weight:400;line-height:1.2;margin:0 0 5px;padding:0 0 10px;width:100%}.popup__input::-moz-placeholder{color:#c4c4c4}.popup__input::placeholder{color:#c4c4c4}
 .popup__input_type_error{border-bottom:1px solid red}
 .popup__error{color:red;font-size:12px;font-weight:400;line-height:1;min-height:24px;visibility:hidden}.popup__error:last-of-type{margin:0 0 19px}@media (max-width:568px){.popup__error:last-of-type{margin-bottom:16px}}
@@ -40,3 +41,5 @@
 .popup__image{max-height:75vh;max-width:75vw}
 .popup__caption{color:#fff;font-size:12px;font-weight:400;line-height:1.2;padding-top:10px}
 
+
+/*# sourceMappingURL=main.css.map*/
