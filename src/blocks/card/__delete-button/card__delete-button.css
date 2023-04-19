@@ -6,7 +6,7 @@
   width: 18px;
   height: 19px;
   padding: 0;
-  background: transparent url(../../../images/delete-button.svg) no-repeat center / contain;
+  background: url(../../../images/delete-button.svg) no-repeat center / contain;
   border: none;
   transition: opacity 0.2s;
   cursor: pointer;

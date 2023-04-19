@@ -1,10 +1,11 @@
 export default class Card {
-  constructor(cardData, templateSelector, handleCardClick, { handleLikeClick }) {
+  constructor(cardData, userId, templateSelector, handleCardClick, { handleLikeClick }) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._likes = cardData.likes;
     this._cardId = cardData._id;
     this._ownerId = cardData.owner._id;
+    this._userId = userId;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleLikeClick = handleLikeClick;
@@ -29,22 +30,22 @@ export default class Card {
   putLike(likesArray) {
     this._buttonLike.classList.add('card__like-button_active');
     this._likeCounter.textContent = likesArray.length;
-    this.isLiked = true;
+    this._isLiked = true;
   }
 
   // удалить лайк
   deleteLike(likesArray) {
     this._buttonLike.classList.remove('card__like-button_active');
     this._likeCounter.textContent = likesArray.length;
-    this.isLiked = false;
+    this._isLiked = false;
   }
 
-  // проверить, стоит ли мой лайк
-  isLiked() {
-    if (this._likes.some((like) => like._id === this._ownerId)) {
-      return true;
+  _isLiked() {
+    if (this._likes.some((item) => item._id === this._ownerId)) {
+      this._buttonLike.classList.add('card__like-button_active');
+      this._isLiked = true;
     } else {
-      return false;
+      this._isLiked = false;
     }
   }
 
@@ -55,7 +56,7 @@ export default class Card {
     });
 
     this._buttonLike.addEventListener('click', () => {
-      this._handleLikeClick(this._cardId, this.isLiked);
+      this._handleLikeClick(this._cardId, this._isLiked);
     });
 
     this._cardImage.addEventListener('click', () => {
@@ -72,7 +73,6 @@ export default class Card {
     this._buttonDelete = this._card.querySelector('.card__delete-button');
     this._buttonLike = this._card.querySelector('.card__like-button');
     this._likeCounter = this._card.querySelector('.card__like-counter');
-    
     this._likeCounter.textContent = this._likes.length;
 
     this._setEventListeners();

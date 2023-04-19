@@ -10,16 +10,22 @@ import {
   configValidation,
   buttonEdit,
   buttonAdd,
+  avatarEdit,
   formProfile,
   formCard,
+  formAvatar,
   popupFormProfileSelector,
   popupFormCardSelector,
   popupCardImageSelector,
+  popupFormAvatarSelector,
   userNameSelector,
   userAboutSelector,
+  userAvatarSelector,
   cardTemplateSelector,
   cardsContainerSelector
 } from '../utils/constants.js';
+
+let userId;
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
@@ -35,6 +41,7 @@ const api = new Api({
 api.getUserInfo()
   .then((userData) => {
     userInfo.setUserInfo(userData);
+    userId = userData._id;
   })
   .catch((err) => {
     console.log(`Ошибка: ${err}`);
@@ -73,6 +80,7 @@ const handleCardClick = (cardImageSrc, cardImageAlt) => {
 const renderCard = (cardData) => {
   const card = new Card(
     cardData,
+    userId,
     cardTemplateSelector,
     handleCardClick,
     {
@@ -128,24 +136,48 @@ api.getCards()
     console.log(`Ошибка: ${err}`);
   });
 
+// открыть форму "Обновить аватар"
+const handleOpenFormAvatar = () => {
+  formAvatarValidator.resetValidation();
+  popupFormAvatar.open();
+};
+
+// submit + закрыть форму "Обновить аватар"
+const handleSubmitFormAvatar = (userData) => {
+  // сервер: обновить аватар пользователя
+  api.patchAvatar(userData)
+    .then((userData) => {
+      userInfo.setUserAvatar(userData);
+      popupFormAvatar.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    });
+}
+
 // ЭКЗЕМПЛЯРЫ КЛАССОВ
-const userInfo = new UserInfo(userNameSelector, userAboutSelector);
+const userInfo = new UserInfo(userNameSelector, userAboutSelector, userAvatarSelector);
 const cardsContainer = new Section({ renderer: renderCard }, cardsContainerSelector);
 const popupFormProfile = new PopupWithForm(popupFormProfileSelector, handleSubmitFormProfile);
 const popupFormCard = new PopupWithForm(popupFormCardSelector, handleSubmitFormCard);
+const popupFormAvatar = new PopupWithForm(popupFormAvatarSelector, handleSubmitFormAvatar);
 const popupCardImage = new PopupWithImage(popupCardImageSelector);
 const formProfileValidator = new FormValidator(configValidation, formProfile);
-const formCardValidator = new FormValidator(configValidation, formCard); 
+const formCardValidator = new FormValidator(configValidation, formCard);
+const formAvatarValidator = new FormValidator(configValidation, formAvatar); 
 
 // ВАЛИДАЦИЯ ФОРМ
 
 formProfileValidator.enableValidation();
 formCardValidator.enableValidation();
+formAvatarValidator.enableValidation();
 
 // СЛУШАТЕЛИ СОБЫТИЙ
 
 buttonEdit.addEventListener('click', handleOpenFormProfile);
 buttonAdd.addEventListener('click', handleOpenFormCard);
+avatarEdit.addEventListener('click', handleOpenFormAvatar);
 popupFormProfile.setEventListeners();
 popupFormCard.setEventListeners();
+popupFormAvatar.setEventListeners();
 popupCardImage.setEventListeners();

@@ -26,10 +26,13 @@
     <main class="content">
       <!-- profile -->
       <section class="profile" aria-label="профиль пользователя">
-        <img
-          class="profile__image"
-          src="<%=require('./images/avatar.jpg')%>"
-          alt="Аватар пользователя">
+        <div class="profile__avatar-container">
+          <img
+            class="profile__avatar-image"
+            src="#"
+            alt="Аватар пользователя">
+          <div class="profile__avatar-edit"></div>
+        </div>
         <div class="profile__info">
           <h1 class="profile__name"></h1>
           <button
@@ -159,6 +162,33 @@
             type="submit"
             aria-label="кнопка-сохранить">
             Да
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- popup: обновления аватара -->
+    <div class="popup popup_type_avatar">
+      <div class="popup__container">
+        <button
+          class="popup__close-button"
+          type="button"
+          aria-label="кнопка-закрыть">
+        </button>
+        <form class="popup__form" name="avatar-form">
+          <h3 class="popup__title">Обновить аватар</h3>
+          <input
+            class="popup__input popup__input_type_link"
+            type="url"
+            id="avatar-input"
+            name="avatar"
+            placeholder="Ссылка на картинку"
+            required>
+          <span class="popup__error avatar-input-error"></span>
+          <button
+            class="popup__submit-button"
+            type="submit"
+            aria-label="кнопка-сохранить">
+            Сохранить
           </button>
         </form>
       </div>

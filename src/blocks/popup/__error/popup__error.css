@@ -7,10 +7,6 @@
   visibility: hidden;
 }
 
-.popup__error:last-of-type {
-  margin: 0 0 19px;
-}
-
 /* 568px */
 @media (max-width: 568px) {
   .popup__error:last-of-type {

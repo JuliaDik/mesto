@@ -1,4 +1,4 @@
-.profile__image {
+.profile__avatar-image {
   width: 120px;
   height: 120px;
   -o-object-fit: cover;
@@ -8,7 +8,7 @@
 
 /* 768px */
 @media (max-width: 768px) {
-  .profile__image {
+  .profile__avatar-image {
     margin-bottom: 29px;
   }
 }
