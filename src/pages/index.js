@@ -39,7 +39,7 @@ const api = new Api({
 
 // РЕДАКТИРОВАНИЕ ПРОФИЛЯ
 
-// сервер: получить данные о пользователе
+// запрос на сервер: получить данные о пользователе
 api.getUserInfo()
   .then((userData) => {
     userInfo.setUserInfo(userData);
@@ -60,7 +60,8 @@ const handleOpenFormProfile = () => {
 
 // submit + закрыть форму "Редактировать профиль"
 const handleSubmitFormProfile = (userData) => {
-  // сервер: обновить данные о пользователе
+  popupFormProfile.renderLoading(true);
+  // запрос на сервер: обновить данные о пользователе
   api.patchUserInfo(userData)
     .then((userData) => {
       userInfo.setUserInfo(userData);
@@ -68,7 +69,10 @@ const handleSubmitFormProfile = (userData) => {
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
-    }); 
+    })
+    .finally(() => {
+      popupFormProfile.renderLoading(false);
+    })
 };
 
 // ДОБАВЛЕНИЕ КАРТОЧЕК
@@ -132,6 +136,7 @@ const handleOpenFormCard = () => {
 
 // submit + закрыть форму "Новое место"
 const handleSubmitFormCard = (cardData) => {
+  popupFormCard.renderLoading(true);
   api.postCard(cardData)
     .then((cardData) => {
       renderCard(cardData);
@@ -139,10 +144,13 @@ const handleSubmitFormCard = (cardData) => {
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
-    });
+    })
+    .finally(() => {
+      popupFormCard.renderLoading(false);
+    })
 };
 
-// сервер: загрузить массив карточек
+// запрос на сервер: загрузить массив карточек
 api.getCards()
   .then((cards) => {
     cardsContainer.renderItems(cards);
@@ -159,7 +167,8 @@ const handleOpenFormAvatar = () => {
 
 // submit + закрыть форму "Обновить аватар"
 const handleSubmitFormAvatar = (userData) => {
-  // сервер: обновить аватар пользователя
+  popupFormAvatar.renderLoading(true);
+  // запрос на сервер: обновить аватар пользователя
   api.patchAvatar(userData)
     .then((userData) => {
       userInfo.setUserAvatar(userData);
@@ -167,7 +176,10 @@ const handleSubmitFormAvatar = (userData) => {
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
-    });
+    })
+    .finally(() => {
+      popupFormAvatar.renderLoading(false);
+    })
 }
 
 // ЭКЗЕМПЛЯРЫ КЛАССОВ
