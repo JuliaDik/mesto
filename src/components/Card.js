@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(cardData, userId, templateSelector, handleCardClick, { handleLikeClick }) {
+  constructor(cardData, userId, templateSelector, handleCardClick, { handleLikeClick, handleDeleteClick }) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._likes = cardData.likes;
@@ -9,6 +9,7 @@ export default class Card {
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleLikeClick = handleLikeClick;
+    this._handleDeleteClick = handleDeleteClick;
   }
 
   _getCardElement() {
@@ -19,11 +20,6 @@ export default class Card {
       .cloneNode(true);
 
     return cardElement;
-  }
-
-  // удалить карточку
-  _handleDelete() {
-    this._buttonDelete.closest('.card').remove();
   }
 
   // поставить лайк
@@ -49,10 +45,16 @@ export default class Card {
     }
   }
 
+  // удалить карточку
+  deleteCard() {
+    this._card.remove();
+    this._card = null;
+  }
+
   // установить слушатели по клику на корзину, лайк, картинку
   _setEventListeners() {
     this._buttonDelete.addEventListener('click', () => {
-      this._handleDelete();
+      this._handleDeleteClick(this._cardId);
     });
 
     this._buttonLike.addEventListener('click', () => {
@@ -70,10 +72,15 @@ export default class Card {
 
     this._cardImage = this._card.querySelector('.card__image');
     this._cardTitle = this._card.querySelector('.card__title');
-    this._buttonDelete = this._card.querySelector('.card__delete-button');
     this._buttonLike = this._card.querySelector('.card__like-button');
+    this._buttonDelete = this._card.querySelector('.card__delete-button');
     this._likeCounter = this._card.querySelector('.card__like-counter');
+    
     this._likeCounter.textContent = this._likes.length;
+
+    if (this._ownerId !== this._userId) {
+      this._buttonDelete.remove();
+    }
 
     this._setEventListeners();
 

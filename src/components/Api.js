@@ -52,8 +52,6 @@ export default class Api {
     }).then(this._checkResponse);
   }
 
-  // удалить карточку
-
   // поставить лайк
   putLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
@@ -62,7 +60,7 @@ export default class Api {
     }).then(this._checkResponse);
   }
 
-  // убрать лайк
+  // удалить лайк
   deleteLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
@@ -78,6 +76,14 @@ export default class Api {
       body: JSON.stringify({
         avatar
       })
+    }).then(this._checkResponse);
+  }
+
+  // удалить карточку
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
     }).then(this._checkResponse);
   }
 }

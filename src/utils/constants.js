@@ -24,8 +24,9 @@ export const formAvatar = document.forms['avatar-form'];
 
 // попапы
 export const popupFormProfileSelector = '.popup_type_edit';
-export const popupFormCardSelector = '.popup_type_add';
 export const popupFormAvatarSelector = '.popup_type_avatar';
+export const popupFormConfirmationSelector = '.popup_type_delete';
+export const popupFormCardSelector = '.popup_type_add';
 export const popupCardImageSelector = '.popup_type_image';
 
 // профиль
