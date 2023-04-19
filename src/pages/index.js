@@ -89,8 +89,7 @@ const renderCard = (cardData) => {
     userId,
     cardTemplateSelector,
     handleCardClick,
-    {
-      handleLikeClick: (cardId, isLiked) => {
+    { handleLikeClick: (cardId, isLiked) => {
         if (isLiked) {
           api.deleteLike(cardId)
             .then((cardData) => {
@@ -153,6 +152,7 @@ const handleSubmitFormCard = (cardData) => {
 // запрос на сервер: загрузить массив карточек
 api.getCards()
   .then((cards) => {
+    cards.reverse();
     cardsContainer.renderItems(cards);
   })
   .catch((err) => {

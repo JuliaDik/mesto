@@ -24,25 +24,16 @@ export default class Card {
 
   // поставить лайк
   putLike(likesArray) {
-    this._buttonLike.classList.add('card__like-button_active');
     this._likeCounter.textContent = likesArray.length;
+    this._buttonLike.classList.add('card__like-button_active');
     this._isLiked = true;
   }
 
   // удалить лайк
   deleteLike(likesArray) {
-    this._buttonLike.classList.remove('card__like-button_active');
     this._likeCounter.textContent = likesArray.length;
+    this._buttonLike.classList.remove('card__like-button_active');
     this._isLiked = false;
-  }
-
-  _isLiked() {
-    if (this._likes.some((item) => item._id === this._ownerId)) {
-      this._buttonLike.classList.add('card__like-button_active');
-      this._isLiked = true;
-    } else {
-      this._isLiked = false;
-    }
   }
 
   // удалить карточку
@@ -77,6 +68,14 @@ export default class Card {
     this._likeCounter = this._card.querySelector('.card__like-counter');
     
     this._likeCounter.textContent = this._likes.length;
+
+    if (this._likes.some((user) => user._id === this._ownerId)) {
+      this._isLiked = true;
+      this._buttonLike.classList.add('card__like-button_active');
+    } else {
+      this._isLiked = false;
+      this._buttonLike.classList.remove('card__like-button_active');
+    }
 
     if (this._ownerId !== this._userId) {
       this._buttonDelete.remove();
