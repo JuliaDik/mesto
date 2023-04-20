@@ -17,7 +17,7 @@
 .card{border-radius:10px;font-size:0;overflow:hidden;position:relative}
 .card__delete-button{background:url(823b0cf1b0b7e9cb7cad.svg) no-repeat 50%/contain;border:none;cursor:pointer;height:19px;padding:0;position:absolute;right:20px;top:20px;transition:opacity .2s;width:18px;z-index:1}.card__delete-button:hover{opacity:.5}
 .card__image{box-shadow:0 0 25px rgba(0,0,0,.15);color:#fff;cursor:pointer;display:block;height:282px;-o-object-fit:cover;object-fit:cover;width:100%}
-.card__info{align-items:center;background-color:#fff;box-sizing:border-box;display:flex;justify-content:space-between;padding:25px 20px}
+.card__info{align-items:center;background-color:#fff;box-sizing:border-box;display:flex;justify-content:space-between;padding:20px}
 .card__title{font-size:24px;font-weight:900;line-height:1.2;margin:0;max-width:calc(100% - 35px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .card__like-wrapper{align-items:center;display:flex;flex-direction:column;gap:3px}
 .card__like-button{background:url(87ed371465c7a6a1cd01.svg) no-repeat 50%/contain;border:none;cursor:pointer;height:19px;padding:0;transition:opacity .2s;width:22px}.card__like-button:hover{opacity:.5}
