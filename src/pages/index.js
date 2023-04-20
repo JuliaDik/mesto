@@ -91,6 +91,7 @@ const renderCard = (cardData) => {
     handleCardClick,
     { handleLikeClick: (cardId, isLiked) => {
         if (isLiked) {
+          // запрос на сервер: удалить лайк
           api.deleteLike(cardId)
             .then((cardData) => {
               card.deleteLike(cardData.likes);
@@ -99,6 +100,7 @@ const renderCard = (cardData) => {
               console.log(`Ошибка: ${err}`);
             });
         } else {
+          // запрос на сервер: поставить лайк
           api.putLike(cardId)
             .then((cardData) => {
               card.putLike(cardData.likes);
@@ -111,14 +113,15 @@ const renderCard = (cardData) => {
       handleDeleteClick: (cardId) => {
         popupFormConfirmation.open();
         popupFormConfirmation.handleSubmit(() => {
+          // запрос на сервер: удалить карточку
           api.deleteCard(cardId)
-          .then((cardData) => {
-            card.deleteCard(cardData._id);
-            popupFormConfirmation.close();
-          })
-          .catch((err) => {
-            console.log(`Ошибка: ${err}`);
-          });
+            .then((cardData) => {
+              card.deleteCard(cardData._id);
+              popupFormConfirmation.close();
+            })
+            .catch((err) => {
+              console.log(`Ошибка: ${err}`);
+            });
         })
       }
     },
@@ -136,6 +139,7 @@ const handleOpenFormCard = () => {
 // submit + закрыть форму "Новое место"
 const handleSubmitFormCard = (cardData) => {
   popupFormCard.renderLoading(true);
+  // запрос на сервер: добавить карточку
   api.postCard(cardData)
     .then((cardData) => {
       renderCard(cardData);
@@ -149,7 +153,7 @@ const handleSubmitFormCard = (cardData) => {
     })
 };
 
-// запрос на сервер: загрузить массив карточек
+// запрос на сервер: получить карточки
 api.getCards()
   .then((cards) => {
     cards.reverse();
@@ -158,6 +162,8 @@ api.getCards()
   .catch((err) => {
     console.log(`Ошибка: ${err}`);
   });
+
+// ОБНОВЛЕНИЕ АВАТАРА
 
 // открыть форму "Обновить аватар"
 const handleOpenFormAvatar = () => {
@@ -180,9 +186,10 @@ const handleSubmitFormAvatar = (userData) => {
     .finally(() => {
       popupFormAvatar.renderLoading(false);
     })
-}
+};
 
 // ЭКЗЕМПЛЯРЫ КЛАССОВ
+
 const userInfo = new UserInfo(userNameSelector, userAboutSelector, userAvatarSelector);
 const cardsContainer = new Section({ renderer: renderCard }, cardsContainerSelector);
 const popupFormProfile = new PopupWithForm(popupFormProfileSelector, handleSubmitFormProfile);

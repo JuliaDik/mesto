@@ -19,14 +19,6 @@ export default class Api {
       headers: this._headers
     }).then(this._checkResponse);
   }
-  
-  // получить карточки
-  getCards() {
-    return fetch(`${this._baseUrl}/cards`, {
-      method: 'GET',
-      headers: this._headers
-    }).then(this._checkResponse);
-  }
 
   // обновить данные о пользователе
   patchUserInfo({ name, about }) {
@@ -37,6 +29,25 @@ export default class Api {
         name,
         about
       })
+    }).then(this._checkResponse);
+  }
+  
+  // обновить аватар пользователя
+  patchAvatar({ avatar }) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar
+      })
+    }).then(this._checkResponse);
+  }
+
+  // получить карточки
+  getCards() {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'GET',
+      headers: this._headers
     }).then(this._checkResponse);
   }
 
@@ -52,6 +63,14 @@ export default class Api {
     }).then(this._checkResponse);
   }
 
+  // удалить карточку
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    }).then(this._checkResponse);
+  }
+
   // поставить лайк
   putLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
@@ -63,25 +82,6 @@ export default class Api {
   // удалить лайк
   deleteLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: 'DELETE',
-      headers: this._headers,
-    }).then(this._checkResponse);
-  }
-
-  // обновить аватар пользователя
-  patchAvatar({ avatar }) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: 'PATCH',
-      headers: this._headers,
-      body: JSON.stringify({
-        avatar
-      })
-    }).then(this._checkResponse);
-  }
-
-  // удалить карточку
-  deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
     }).then(this._checkResponse);
