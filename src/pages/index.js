@@ -1,5 +1,5 @@
 import './index.css';
-import Api from '../components/Api.js';
+import { api } from '../components/Api.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
@@ -29,25 +29,18 @@ import {
 
 let userId;
 
-const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
-  headers: {
-    authorization: '2ddcea56-4974-44a0-8239-7ed219c4b293',
-    'Content-Type': 'application/json'
-  }
-});
+// запрос на сервер:
+// получить данные о пользователе
+// получить карточки
+Promise.all([api.getUserInfo(), api.getCards()])
+  .then(([userData, cards]) => {
+    userId = userData._id;
+    userInfo.setUserInfo(userData);
+    cards.reverse();
+    cardsContainer.renderItems(cards);
+  })
 
 // РЕДАКТИРОВАНИЕ ПРОФИЛЯ
-
-// запрос на сервер: получить данные о пользователе
-api.getUserInfo()
-  .then((userData) => {
-    userInfo.setUserInfo(userData);
-    userId = userData._id;
-  })
-  .catch((err) => {
-    console.log(`Ошибка: ${err}`);
-  });
 
 // открыть форму "Редактировать профиль"
 const handleOpenFormProfile = () => {
@@ -66,9 +59,6 @@ const handleSubmitFormProfile = (userData) => {
     .then((userData) => {
       userInfo.setUserInfo(userData);
       popupFormProfile.close();
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
     })
     .finally(() => {
       popupFormProfile.renderLoading(false);
@@ -96,18 +86,12 @@ const renderCard = (cardData) => {
             .then((cardData) => {
               card.deleteLike(cardData.likes);
             })
-            .catch((err) => {
-              console.log(`Ошибка: ${err}`);
-            });
         } else {
           // запрос на сервер: поставить лайк
           api.putLike(cardId)
             .then((cardData) => {
               card.putLike(cardData.likes);
             })
-            .catch((err) => {
-              console.log(`Ошибка: ${err}`);
-            });
         }
       },
       handleDeleteClick: (cardId) => {
@@ -119,15 +103,11 @@ const renderCard = (cardData) => {
               card.deleteCard(cardData._id);
               popupFormConfirmation.close();
             })
-            .catch((err) => {
-              console.log(`Ошибка: ${err}`);
-            });
         })
       }
     },
   );
-  const generatedCard = card.generateCard();
-  cardsContainer.addItem(generatedCard);
+  return card.generateCard();
 };
 
 // открыть форму "Новое место"
@@ -145,23 +125,10 @@ const handleSubmitFormCard = (cardData) => {
       renderCard(cardData);
       popupFormCard.close();
     })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    })
     .finally(() => {
       popupFormCard.renderLoading(false);
     })
 };
-
-// запрос на сервер: получить карточки
-api.getCards()
-  .then((cards) => {
-    cards.reverse();
-    cardsContainer.renderItems(cards);
-  })
-  .catch((err) => {
-    console.log(`Ошибка: ${err}`);
-  });
 
 // ОБНОВЛЕНИЕ АВАТАРА
 
@@ -179,9 +146,6 @@ const handleSubmitFormAvatar = (userData) => {
     .then((userData) => {
       userInfo.setUserAvatar(userData);
       popupFormAvatar.close();
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
     })
     .finally(() => {
       popupFormAvatar.renderLoading(false);

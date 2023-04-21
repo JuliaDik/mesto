@@ -1,4 +1,4 @@
-export default class Api {
+class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
@@ -11,13 +11,20 @@ export default class Api {
     }
     return Promise.reject(`Ошибка: ${res.status}`);
   }
+  
+  // поймать ошибку
+  _catchError(err) {
+    console.log(`Ошибка: ${err}`);
+  }
 
   // получить данные о пользователе
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
       headers: this._headers
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
+      .catch(this._catchError)
   }
 
   // обновить данные о пользователе
@@ -29,7 +36,9 @@ export default class Api {
         name,
         about
       })
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
+      .catch(this._catchError)
   }
   
   // обновить аватар пользователя
@@ -40,7 +49,9 @@ export default class Api {
       body: JSON.stringify({
         avatar
       })
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
+      .catch(this._catchError)
   }
 
   // получить карточки
@@ -48,7 +59,9 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'GET',
       headers: this._headers
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
+      .catch(this._catchError)
   }
 
   // добавить карточку
@@ -60,7 +73,9 @@ export default class Api {
         name,
         link
       })
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
+      .catch(this._catchError)
   }
 
   // удалить карточку
@@ -68,7 +83,9 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
+      .catch(this._catchError)
   }
 
   // поставить лайк
@@ -76,7 +93,9 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this._headers,
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
+      .catch(this._catchError)
   }
 
   // удалить лайк
@@ -84,6 +103,16 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this._headers,
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
+      .catch(this._catchError)
   }
 }
+
+export const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
+  headers: {
+    authorization: '2ddcea56-4974-44a0-8239-7ed219c4b293',
+    'Content-Type': 'application/json'
+  }
+});
