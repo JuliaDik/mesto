@@ -1,5 +1,5 @@
 import './index.css';
-import { api } from '../components/Api.js';
+import Api from '../components/Api.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
@@ -28,6 +28,14 @@ import {
 } from '../utils/constants.js';
 
 let userId;
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
+  headers: {
+    authorization: '2ddcea56-4974-44a0-8239-7ed219c4b293',
+    'Content-Type': 'application/json'
+  }
+});
 
 // запрос на сервер:
 // получить данные о пользователе
