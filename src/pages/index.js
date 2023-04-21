@@ -39,6 +39,9 @@ Promise.all([api.getUserInfo(), api.getCards()])
     cards.reverse();
     cardsContainer.renderItems(cards);
   })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`);
+  })
 
 // РЕДАКТИРОВАНИЕ ПРОФИЛЯ
 
@@ -59,6 +62,9 @@ const handleSubmitFormProfile = (userData) => {
     .then((userData) => {
       userInfo.setUserInfo(userData);
       popupFormProfile.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
     })
     .finally(() => {
       popupFormProfile.renderLoading(false);
@@ -86,11 +92,17 @@ const renderCard = (cardData) => {
             .then((cardData) => {
               card.deleteLike(cardData.likes);
             })
+            .catch((err) => {
+              console.log(`Ошибка: ${err}`);
+            })
         } else {
           // запрос на сервер: поставить лайк
           api.putLike(cardId)
             .then((cardData) => {
               card.putLike(cardData.likes);
+            })
+            .catch((err) => {
+              console.log(`Ошибка: ${err}`);
             })
         }
       },
@@ -102,6 +114,9 @@ const renderCard = (cardData) => {
             .then((cardData) => {
               card.deleteCard(cardData._id);
               popupFormConfirmation.close();
+            })
+            .catch((err) => {
+              console.log(`Ошибка: ${err}`);
             })
         })
       }
@@ -126,6 +141,9 @@ const handleSubmitFormCard = (cardData) => {
       renderCard(cardData);
       popupFormCard.close();
     })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    })
     .finally(() => {
       popupFormCard.renderLoading(false);
     })
@@ -147,6 +165,9 @@ const handleSubmitFormAvatar = (userData) => {
     .then((userData) => {
       userInfo.setUserAvatar(userData);
       popupFormAvatar.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
     })
     .finally(() => {
       popupFormAvatar.renderLoading(false);

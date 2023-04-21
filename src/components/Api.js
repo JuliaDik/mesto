@@ -11,11 +11,6 @@ class Api {
     }
     return Promise.reject(`Ошибка: ${res.status}`);
   }
-  
-  // поймать ошибку
-  _catchError(err) {
-    console.log(`Ошибка: ${err}`);
-  }
 
   // получить данные о пользователе
   getUserInfo() {
@@ -24,7 +19,6 @@ class Api {
       headers: this._headers
     })
       .then(this._checkResponse)
-      .catch(this._catchError)
   }
 
   // обновить данные о пользователе
@@ -38,7 +32,6 @@ class Api {
       })
     })
       .then(this._checkResponse)
-      .catch(this._catchError)
   }
   
   // обновить аватар пользователя
@@ -51,7 +44,6 @@ class Api {
       })
     })
       .then(this._checkResponse)
-      .catch(this._catchError)
   }
 
   // получить карточки
@@ -61,7 +53,6 @@ class Api {
       headers: this._headers
     })
       .then(this._checkResponse)
-      .catch(this._catchError)
   }
 
   // добавить карточку
@@ -75,7 +66,6 @@ class Api {
       })
     })
       .then(this._checkResponse)
-      .catch(this._catchError)
   }
 
   // удалить карточку
@@ -85,7 +75,6 @@ class Api {
       headers: this._headers,
     })
       .then(this._checkResponse)
-      .catch(this._catchError)
   }
 
   // поставить лайк
@@ -95,7 +84,6 @@ class Api {
       headers: this._headers,
     })
       .then(this._checkResponse)
-      .catch(this._catchError)
   }
 
   // удалить лайк
@@ -105,7 +93,6 @@ class Api {
       headers: this._headers,
     })
       .then(this._checkResponse)
-      .catch(this._catchError)
   }
 }
 
