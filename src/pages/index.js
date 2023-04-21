@@ -107,7 +107,8 @@ const renderCard = (cardData) => {
       }
     },
   );
-  return card.generateCard();
+  const generatedCard = card.generateCard();
+  cardsContainer.addItem(generatedCard);
 };
 
 // открыть форму "Новое место"
