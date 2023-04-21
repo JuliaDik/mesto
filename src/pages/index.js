@@ -44,7 +44,6 @@ Promise.all([api.getUserInfo(), api.getCards()])
   .then(([userData, cards]) => {
     userId = userData._id;
     userInfo.setUserInfo(userData);
-    cards.reverse();
     cardsContainer.renderItems(cards);
   })
   .catch((err) => {
@@ -86,8 +85,8 @@ const handleCardClick = (cardImageSrc, cardImageAlt) => {
   popupCardImage.open(cardImageSrc, cardImageAlt);
 };
 
-// добавить карточку
-const renderCard = (cardData) => {
+// создать карточку
+const createCard = (cardData) => {
   const card = new Card(
     cardData,
     userId,
@@ -130,8 +129,8 @@ const renderCard = (cardData) => {
       }
     },
   );
-  const generatedCard = card.generateCard();
-  cardsContainer.addItem(generatedCard);
+  const createdCard = card.generateCard();
+  return createdCard;
 };
 
 // открыть форму "Новое место"
@@ -146,7 +145,7 @@ const handleSubmitFormCard = (cardData) => {
   // запрос на сервер: добавить карточку
   api.postCard(cardData)
     .then((cardData) => {
-      renderCard(cardData);
+      cardsContainer.addItem(createCard(cardData));
       popupFormCard.close();
     })
     .catch((err) => {
@@ -185,7 +184,7 @@ const handleSubmitFormAvatar = (userData) => {
 // ЭКЗЕМПЛЯРЫ КЛАССОВ
 
 const userInfo = new UserInfo(userNameSelector, userAboutSelector, userAvatarSelector);
-const cardsContainer = new Section({ renderer: renderCard }, cardsContainerSelector);
+const cardsContainer = new Section({ renderer: createCard }, cardsContainerSelector);
 const popupFormProfile = new PopupWithForm(popupFormProfileSelector, handleSubmitFormProfile);
 const popupFormAvatar = new PopupWithForm(popupFormAvatarSelector, handleSubmitFormAvatar);
 const popupFormConfirmation = new PopupWithСonfirmation(popupFormConfirmationSelector);
